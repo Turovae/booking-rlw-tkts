@@ -12,9 +12,17 @@ function App() {
           <li className="menu__item"><a href="#">Отзывы</a></li>
           <li className="menu__item"><a href="#">Контакты</a></li>
         </ul>
-        <div className="header__form-wrapper">
-          <h2 className="header__slogan"><span>Вся жизнь&nbsp;-</span><br /><span className="bold">путешествие!</span></h2>
-          <form className="header__form" action="">Форма</form>
+        <div className="header__row">
+          <div className="header__col">
+            <h2 className="header__slogan">
+              <span>Вся жизнь -</span>
+              <br />
+              <span className="header__slogan_bold">путешествие!</span>
+            </h2>
+          </div>
+          <div className="header__col">
+            <form className="header__form" action="">Форма</form>
+          </div>
         </div>
       </div>
       <div className="about">About us</div>
