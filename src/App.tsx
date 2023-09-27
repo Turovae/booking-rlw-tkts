@@ -21,7 +21,23 @@ function App() {
             </h2>
           </div>
           <div className="header__col">
-            <form className="header__form" action="">Форма</form>
+            <form className="header__form search-form" action="">
+              <div className="search-form__row">
+                <span className="search-form__hint">Направление</span>
+                <div className="search-form__inputs">
+                  <input type="text" className="search-form__input" name="lacation-from" placeholder="Откуда" />
+                  <button type="button" className="search-form__direction-change">см</button>
+                  <input type="text" className="search-form__input" name="lacation-from" placeholder="Куда" />
+                </div>
+              </div>
+              <div className="search-form__row">
+                <span className="search-form__hint">Дата</span>
+                <div className="search-form__inputs">
+                  <input type="date" className="search-form__input" name="lacation-from" />
+                  <input type="date" className="search-form__input" name="lacation-from" />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
