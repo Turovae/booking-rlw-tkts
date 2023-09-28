@@ -26,7 +26,7 @@ function App() {
                 <span className="search-form__hint">Направление</span>
                 <div className="search-form__inputs">
                   <input type="text" className="search-form__input" name="lacation-from" placeholder="Откуда" />
-                  <button type="button" className="search-form__direction-change">см</button>
+                  <button type="button" className="search-form__direction-change" />
                   <input type="text" className="search-form__input" name="lacation-from" placeholder="Куда" />
                 </div>
               </div>
@@ -36,6 +36,9 @@ function App() {
                   <input type="date" className="search-form__input" name="lacation-from" />
                   <input type="date" className="search-form__input" name="lacation-from" />
                 </div>
+              </div>
+              <div className="search-form__row">
+                <button className="search-form__button-submit">Найти билеты</button>
               </div>
             </form>
           </div>
