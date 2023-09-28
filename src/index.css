@@ -210,6 +210,7 @@ body {
   height: 60px;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 5px;
 }
 
 .search-form__direction-change {
@@ -229,4 +230,23 @@ body {
   line-height: 28px;
   align-self: end;
   text-transform: uppercase;
+  background: #FFA800;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  border: 1px solid #FFA800;
+}
+
+.search-form__button-submit:hover {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+}
+
+.search-form__button-submit:active {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+  background: none;
+}
+
+#cities {
+  width: 100%;
+  background: #000;
 }

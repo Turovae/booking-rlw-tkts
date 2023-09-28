@@ -1,4 +1,5 @@
 function Header() {
+  const cityes = ['moskow', 'novosibirsk', 'krasnoyarsk', 'kemerovo', 'achinsk'];
   return (
     <div className="header">
       <div className="header__banner"></div>
@@ -22,9 +23,12 @@ function Header() {
             <div className="search-form__row">
               <span className="search-form__hint">Направление</span>
               <div className="search-form__inputs">
-                <input type="text" className="search-form__input" name="lacation-from" placeholder="Откуда" />
+                <input type="search" list="cities" className="search-form__input" name="lacation-from" placeholder="Откуда" />
                 <button type="button" className="search-form__direction-change" />
-                <input type="text" className="search-form__input" name="lacation-from" placeholder="Куда" />
+                <input type="text" list="cities" className="search-form__input" name="lacation-from" placeholder="Куда" />
+                <datalist id="cities">
+                  {cityes.map((city) => <option key={city} value={city}>{city}</option>)}
+                </datalist>
               </div>
             </div>
             <div className="search-form__row">
