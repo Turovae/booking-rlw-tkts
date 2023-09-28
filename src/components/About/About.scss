@@ -18,5 +18,9 @@
 
   &__paragraph {
     margin-bottom: 28px;
+
+    &_bold {
+      font-weight: 700;
+    }
   }
 }

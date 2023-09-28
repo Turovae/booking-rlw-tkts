@@ -34,7 +34,6 @@ body {
 
 .main {
   max-width: 1410px;
-  /* min-width: 1350px; */
   width: 100%;
   margin: 0 auto;
 }
@@ -151,14 +150,12 @@ body {
 
 .header__col {
   display: flex;
-  /* width: 50%; */
   flex-basis: 50%;
   justify-content: center;
   align-items: center;
   align-content: stretch;
   font-size: 72px;
   flex-shrink: 1;
-  /* border: 1px solid black; */
 }
 
 
@@ -190,7 +187,6 @@ body {
 }
 
 .search-form__row {
-  /* border: 1px solid gray; */
   line-height: 36px;
   font-size: 30px;
   display: flex;
@@ -203,7 +199,6 @@ body {
   font-weight: thin;
   display: block;
   margin-bottom: 15px;
-  /* border: 1px solid wheat; */
 }
 
 .search-form__inputs {
