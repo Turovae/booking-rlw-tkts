@@ -1,0 +1,22 @@
+.about {
+  padding-top: 140px;
+  padding-bottom: 110px;
+
+  &__title {
+    font-size: 50px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    margin-left: 5px;
+  }
+
+  &__content {
+    font-size: 24px;
+    line-height: 28px;
+    border-left: 9px solid #FFA800;
+    padding-left: 20px;
+  }
+
+  &__paragraph {
+    margin-bottom: 28px;
+  }
+}
