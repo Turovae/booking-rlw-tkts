@@ -6,6 +6,13 @@ export default defineConfig(( {command} ) => {
   const setting = {
     plugins: [react()],
     base: '',
+    // css: {
+    //   preprocessorOptions: {
+    //     scss: {
+    //       additionalData: '$injectedColor: orange;'
+    //     }
+    //   }
+    // }
   };
 
   if (command === 'build') setting.base = 'https://turovae.github.io/booking-rlw-tkts/';
