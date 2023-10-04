@@ -1,5 +1,6 @@
 .how-works {
   color: #ffffff;
+  height: 575px;
 
   &__background {
     position: absolute;
@@ -39,7 +40,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 97px;
   }
 
   &__title {
@@ -61,12 +62,16 @@
   &__content {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 200px;
 
     &-item {
       width: 230px;
       font-size: 24px;
       text-align: center;
+
+      &-icon {
+        margin-bottom: 35px;
+      }
     }
   }
 }
