@@ -23,7 +23,7 @@
   display: flex;
   gap: 35px;
 
-  &__user-avatar {
+  &__userpic {
     width: 200px;
     height: 200px;
     flex-shrink: 0;
@@ -32,11 +32,11 @@
     overflow: hidden;
   }
 
-  &__content {
+  &__body {
     margin-top: 35px;
   }
 
-  &__user-name {
+  &__username {
     color: #000000;
     font-size: 24px;
     font-weight: 600;
@@ -71,7 +71,7 @@
   }
 }
 
-.page-indicator {
+.feedback-control {
   display: flex;
   // border: 1px solid black;
   width: fit-content;

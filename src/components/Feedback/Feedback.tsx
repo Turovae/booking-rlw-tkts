@@ -22,14 +22,16 @@ const comments: UserFeedback[] = [
   },
 ];
 
-function Feedback () {
+function Feedback() {
   return (
     <div className="feedback">
-      <h2 className="feedback__title">Отзывы</h2>
-      <div className="feedback__comments">
-        {comments.map((comment) => <FeedbackComment key={comment.userName} userFeedback={comment} />)}
+      <div className="feedback__inline container">
+        <h2 className="feedback__title">Отзывы</h2>
+        <div className="feedback__comments">
+          {comments.map((comment) => <FeedbackComment key={comment.userName} userFeedback={comment} />)}
+        </div>
+        <FeedbackControl elemName='feedback__page-indicator' page={1} numPages={5} />
       </div>
-      <PageIndicator elemName='feedback__page-indicator' page={1} numPages={5} />
     </div>
   )
 }
@@ -39,18 +41,18 @@ function FeedbackComment ({ userFeedback }: {
 }) {
   return (
     <div className="comment">
-      <div className="comment__user-avatar">
+      <div className="comment__userpic">
         <img src={userFeedback.avatar} />
       </div>
-      <div className="comment__content">
-        <div className="comment__user-name">{userFeedback.userName}</div>
+      <div className="comment__body">
+        <div className="comment__username">{userFeedback.userName}</div>
         <div className="comment__text">{userFeedback.content}</div>
       </div>
     </div>
   )
 }
 
-function PageIndicator ({ page, numPages, elemName = '' }: { page: number; numPages: number; elemName?: string }) {
+function FeedbackControl ({ page, numPages, elemName = '' }: { page: number; numPages: number; elemName?: string }) {
   const renderDots = (): React.ReactElement[] => {
     const dots: React.ReactElement[] = [];
 
@@ -59,8 +61,8 @@ function PageIndicator ({ page, numPages, elemName = '' }: { page: number; numPa
 
       dots.push(
         <div
-          className={`page-indicator__dot${isActive ? ' page-indicator__dot_active' : ''}`}
-        ></div>
+          className={`feedback-control__dot${isActive ? ' feedback-control__dot_active' : ''}`}
+        />
       );
     }
 
@@ -68,7 +70,7 @@ function PageIndicator ({ page, numPages, elemName = '' }: { page: number; numPa
   }
 
   return (
-    <div className={`page-indicator ${elemName}`}>
+    <div className={`feedback-control ${elemName}`}>
       {renderDots()}
     </div>
   )
