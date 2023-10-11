@@ -1,4 +1,4 @@
-import './LoadLine.css';
+import './LoadLine.scss';
 
 function LoadLine ({progress}: {progress: number}) {
   return (
