@@ -1,9 +1,7 @@
 .load-line {
   height: 12px;
   width: 100%;
-  position: absolute;
   left: 0;
-  margin-top: -12px;
 }
 
 .load-line__progress {

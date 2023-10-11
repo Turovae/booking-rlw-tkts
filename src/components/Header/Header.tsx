@@ -1,16 +1,24 @@
+import Logo from '../Logo/Logo';
+import './Header.scss';
+
 function Header() {
   const cityes = ['moskow', 'novosibirsk', 'krasnoyarsk', 'kemerovo', 'achinsk'];
   return (
     <div className="header">
-      <div className="header__banner"></div>
-      <div className="header__logo">Лого</div>
-      <ul className="header__menu menu">
-        <li className="menu__item"><a href="#">О нас</a></li>
-        <li className="menu__item"><a href="#">Как это работает</a></li>
-        <li className="menu__item"><a href="#">Отзывы</a></li>
-        <li className="menu__item"><a href="#">Контакты</a></li>
-      </ul>
-      <div className="header__row">
+      <div className="header__logo">
+        <div className="container">
+          <Logo />
+        </div>
+      </div>
+      <div className="header__menu">
+        <ul className="menu container">
+          <li className="menu__item"><a href="#">О нас</a></li>
+          <li className="menu__item"><a href="#">Как это работает</a></li>
+          <li className="menu__item"><a href="#">Отзывы</a></li>
+          <li className="menu__item"><a href="#">Контакты</a></li>
+        </ul>
+      </div>
+      <div className="header__row container">
         <div className="header__col">
           <h2 className="header__slogan">
             <span>Вся жизнь -</span>
@@ -39,7 +47,7 @@ function Header() {
               </div>
             </div>
             <div className="search-form__row">
-              <button className="search-form__button-submit">Найти билеты</button>
+              <button className="search-form__button-submit" type='button'>Найти билеты</button>
             </div>
           </form>
         </div>
