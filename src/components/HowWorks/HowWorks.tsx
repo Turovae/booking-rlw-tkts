@@ -14,7 +14,7 @@ function HowWorks() {
           {/*
             Вот тут мне не нравятся названия классов.
             Но пока не могу придумать, как более элегантно
-            сформировать классы.
+            сформировать их имена.
           */}
           <div className="how-works__content">
             <div className="how-works__content-item">

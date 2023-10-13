@@ -26,6 +26,18 @@
     text-align: center;
     border-radius: 5px;
     padding: 15px 75px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      color: #2D2B2F;
+      border: 1px solid transparent;
+      background: #FFCA62;
+    }
+
+    &:active {
+      background: #FFFFFF;
+    }
   }
 
   &__content {
