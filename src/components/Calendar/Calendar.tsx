@@ -17,7 +17,7 @@ function Calendar() {
   const renderMonthlabel = (): ReactElement => {
     return (
       <span className='calendar__month-label'>
-        {selectedDate.format('MMMM YYYY')}
+        {selectedDate.format('MMMM')}
       </span>
     )
   }
