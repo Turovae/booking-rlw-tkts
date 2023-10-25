@@ -71,6 +71,7 @@ function Calendar() {
 
   return (
     <div className="calendar">
+      <div className="calendar__pointer"></div>
       {/* <div className="calendar__month-label">{selectedMonth.format('MMMM')}</div> */}
       <div className="calendar__header">
         <button className='calendar__btn calendar__prev-month' onClick={handleSetPreviousMonth}>
