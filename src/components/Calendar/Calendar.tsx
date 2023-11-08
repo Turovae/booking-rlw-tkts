@@ -1,8 +1,8 @@
-import React, { ReactElement, useState } from 'react';
+import React, { MouseEvent, ReactElement, useState } from 'react';
 import './Calendar.scss';
 
 import moment from "moment";
-moment.locale('ru', {
+moment.updateLocale('ru', {
   months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль' ,'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
 });
 
@@ -72,14 +72,12 @@ function Calendar() {
   return (
     <div className="calendar">
       <div className="calendar__pointer"></div>
-      {/* <div className="calendar__month-label">{selectedMonth.format('MMMM')}</div> */}
       <div className="calendar__header">
         <button className='calendar__btn calendar__prev-month' onClick={handleSetPreviousMonth}>
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
             <path d="M560-280 360-480l200-200v400Z" />
           </svg>
         </button>
-        {/* <span className='calendar__month-label'>{getCurrentMonth()}</span> */}
         { renderMonthlabel() }
         <button className='calendar__btn calendar__next-month' onClick={handleSetNextMont}>
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -102,7 +100,7 @@ function Week ({ previousCurrentNextView, currentMonthView }: { previousCurrentN
   for (let i = 0; i < 7; i++) {
     const day = {
       number: date.date(),
-      isPast: date < moment(),
+      isEnable: date >= moment(),
       date: date,
       isCurrentMonth: date.month() === currentMonthView.month(),
       isSunday: date.format('dd') === 'Su',
@@ -125,35 +123,53 @@ function Week ({ previousCurrentNextView, currentMonthView }: { previousCurrentN
 interface DayProps {
   day: {
     number: number;
-    isPast: boolean;
+    isEnable: boolean;
     date: moment.Moment;
     isCurrentMonth: boolean;
     isSunday: boolean;
+    selectDayHandler: () => void;
   }
 }
 
 function Day ({ day }: DayProps) {
-  const baseClassName = 'calendar__day';
-  let fullClassName = baseClassName;
+  const BASE_CLASS = 'calendar__day';
+  const PAST_DAY_CLASS = 'past';
+  const ANOTHER_MONTH_CLASS = 'another-month';
+  const SUNDAY_CLASS = 'sunday';
+  const ENABLE_DAY_CLASS = 'enable';
+
+  let fullClassName = BASE_CLASS;
 
   const addClass = (name: string): void => {
-    fullClassName += ` ${baseClassName}_${name}`;
+    fullClassName += ` ${BASE_CLASS}_${name}`;
   }
 
-  if (day.isPast) {
-    addClass('past');
+  if (day.isEnable) {
+    addClass(ENABLE_DAY_CLASS);
+  } else {
+    addClass(PAST_DAY_CLASS);
   }
 
   if (!day.isCurrentMonth) {
-    addClass('another-month');
+    addClass(ANOTHER_MONTH_CLASS);
   }
 
   if (day.isSunday) {
-    addClass('sunday');
+    addClass(SUNDAY_CLASS);
+  }
+
+  const onSelectDay = (event: MouseEvent): void => {
+    event.preventDefault();
+    
+    if (!day.isEnable) {
+      return;
+    }
+
+    console.log(day.date);
   }
 
   return (
-    <div className={fullClassName}>
+    <div className={fullClassName} onClick={onSelectDay}>
       {day.number}
     </div>
   )
