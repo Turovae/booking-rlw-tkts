@@ -127,7 +127,6 @@ interface DayProps {
     date: moment.Moment;
     isCurrentMonth: boolean;
     isSunday: boolean;
-    selectDayHandler: () => void;
   }
 }
 
