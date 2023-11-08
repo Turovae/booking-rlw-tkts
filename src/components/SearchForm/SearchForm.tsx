@@ -10,7 +10,7 @@ function SearchForm() {
         <div className="search-form__inputs">
           <input type="search" list="cities" className="search-form__input" name="lacation-from" placeholder="Откуда" />
           <button type="button" className="search-form__direction-change" />
-          <input type="text" list="cities" className="search-form__input" name="lacation-from" placeholder="Куда" />
+          <input type="text" list="cities" className="search-form__input" name="lacation-to" placeholder="Куда" />
           <datalist id="cities">
             {cityes.map((city) => <option key={city} value={city}>{city}</option>)}
           </datalist>
@@ -19,8 +19,8 @@ function SearchForm() {
       <div className="search-form__row">
         <span className="search-form__hint">Дата</span>
         <div className="search-form__inputs">
-          <input type="date" className="search-form__input" name="lacation-from" />
-          <input type="date" className="search-form__input" name="lacation-from" />
+          <input type="date" className="search-form__input" name="date-from" />
+          <input type="date" className="search-form__input" name="date-to" />
         </div>
       </div>
       <div className="search-form__row">
