@@ -1,0 +1,78 @@
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80px 10px 60px;
+  gap: 50px;
+
+  &__row {
+    line-height: 36px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__hint {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: thin;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  &__inputs {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__input {
+    font-size: 30px;
+    width: 325px;
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    flex-shrink: 1;
+  }
+
+  &__direction-change {
+    flex-shrink: 1;
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    background: url(./img/icons/ic.png);
+    border: none;
+    cursor: pointer;
+  }
+
+  &__button-submit {
+    width: 322px;
+    height: 60px;
+    font-size: 24px;
+    line-height: 28px;
+    align-self: end;
+    text-transform: uppercase;
+    background: #FFA800;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    border: 1px solid #FFA800;
+    margin-top: 50px;
+
+    &:hover {
+      box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+    }
+
+    &:active {
+      box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+      background: none;
+      color: #FFA800;
+    }
+  }
+
+  #cities {
+    width: 100%;
+    background: #000;
+  }
+}
