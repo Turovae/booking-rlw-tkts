@@ -3,7 +3,6 @@ import SearchForm from '../SearchForm/SearchForm';
 import './Header.scss';
 
 function Header() {
-  const cityes = ['moskow', 'novosibirsk', 'krasnoyarsk', 'kemerovo', 'achinsk'];
   return (
     <div className="header">
       <div className="header__logo">
@@ -27,8 +26,10 @@ function Header() {
             <span className="header__slogan_bold">путешествие!</span>
           </h2>
         </div>
-        <div className="header__col header__form">
-          <SearchForm />
+        <div className="header__col">
+          <div className="header__form">
+            <SearchForm />
+          </div>
         </div>
       </div>
     </div>
