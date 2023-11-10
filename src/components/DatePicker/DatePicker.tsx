@@ -51,7 +51,6 @@ function DatePicker () {
   const setDateHandler = (timestamp: number): void => {
     setDate(timestamp);
     void closeCalendar();
-    console.log(dateFromTstToStr(date));
   }
 
   const dateFromTstToStr = (timestamp: number | null): string => {

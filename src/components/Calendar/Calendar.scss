@@ -11,7 +11,6 @@
 }
 
 .calendar {
-  // width: 100%;
   margin: 0 auto;
   font-family: Roboto;
   background: #FFFFFF;
@@ -20,8 +19,6 @@
   flex-direction: column;
   border-radius: 5px;
   margin-top: 15px;
-  // position: absolute;
-  // z-index: 9999;
 
   &__pointer {
     width: 0;
@@ -32,7 +29,6 @@
     position: absolute;
     right: calc(50% - 8px);
     top: 2px;
-    // margin-top: 10px;
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, .25));
   }
 

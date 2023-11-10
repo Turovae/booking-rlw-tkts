@@ -1,11 +1,8 @@
 import './SearchForm.scss';
-// import { useState } from 'react';
 import DatePicker from '../DatePicker/DatePicker';
-// import {default as ReactDatePicker} from 'react-datepicker';
 
 function SearchForm() {
   const cityes = ['moskow', 'novosibirsk', 'krasnoyarsk', 'kemerovo', 'achinsk'];
-  // const [startDate, setStartDate] = useState(new Date());
 
   return (
     <form className="search-form" action="">

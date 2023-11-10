@@ -8,11 +8,6 @@ moment.updateLocale('ru', {
 
 function Calendar({ width, onSelectDate }: { width: number; onSelectDate: (timestamp: number) => void }) {
   const [selectedDate, setSelectedDate] = useState(moment());
-  // const [selectedDay, setSelectedDay] = useState(moment().startOf('day'));
-
-  // const getCurrentMonth = (): string => {
-  //   return selectedDate.format('MMMM');
-  // }
 
   const renderMonthlabel = (): ReactElement => {
     return (
@@ -175,8 +170,6 @@ function Day ({ day, onSelectDate }: DayProps) {
     const timestamp = day.date.valueOf();
 
     onSelectDate(timestamp)
-
-    console.log('from DAY component: ' + timestamp);
   }
 
   return (

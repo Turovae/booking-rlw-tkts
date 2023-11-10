@@ -3,7 +3,6 @@
   width: 100%;
   height: 100%;
   border: 1px solid blue;
-  // position: relative;
   z-index: 9999;
 
   &__input {
@@ -28,12 +27,8 @@
   }
 
   &__calendar {
-    // width: 100%;
     color: #000000;
     position: absolute;
     z-index: 9999;
-    // top: 0;
-    // left: 0;
-    // top: calc(100% + 2px);
   }
 }
