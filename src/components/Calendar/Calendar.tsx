@@ -6,7 +6,7 @@ moment.updateLocale('ru', {
   months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль' ,'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
 });
 
-function Calendar() {
+function Calendar({ width }: { width: number }) {
   const [selectedDate, setSelectedDate] = useState(moment());
   // const [selectedDay, setSelectedDay] = useState(moment().startOf('day'));
 
@@ -70,7 +70,7 @@ function Calendar() {
   }
 
   return (
-    <div className="calendar">
+    <div className="calendar" style={{ width: `${width}px` }}>
       <div className="calendar__pointer"></div>
       <div className="calendar__header">
         <button className='calendar__btn calendar__prev-month' onClick={handleSetPreviousMonth}>
