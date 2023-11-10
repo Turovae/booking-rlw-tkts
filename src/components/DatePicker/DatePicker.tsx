@@ -20,6 +20,8 @@ function DatePicker () {
   const openCalendar = (): void => {
     if (!showCalendar) {
       setShowCalendar(true);
+
+      document.body.addEventListener('click', clickOut);
     }
   }
 
@@ -27,6 +29,23 @@ function DatePicker () {
     if (showCalendar) {
       setShowCalendar(false);
     }
+  }
+
+  const clickOut = (evt: MouseEvent) => {
+    evt.preventDefault();
+
+    if (!evt.target) {
+      return;
+    }
+
+    const picker = (evt.target as HTMLElement).closest('.date-picker');
+
+    if (picker === container.current) {
+      return;
+    }
+
+    setShowCalendar(false);
+    document.body.removeEventListener('click', clickOut);
   }
 
   const setDateHandler = (timestamp: number): void => {
@@ -47,7 +66,7 @@ function DatePicker () {
   return (
     <div className='date-picker' ref={container}>
       <div className="date-picker__input-container">
-        <input type='text' placeholder='дд/мм/гггг' onBlur={closeCalendar} onFocus={openCalendar} value={dateFromTstToStr(date)}/>
+        <input type='text' placeholder='дд/мм/гггг' onFocus={openCalendar} value={dateFromTstToStr(date)}/>
         <div className="date-picker__input-icon" />
       </div>
       {
