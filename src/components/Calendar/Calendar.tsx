@@ -6,7 +6,7 @@ moment.updateLocale('ru', {
   months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль' ,'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
 });
 
-function Calendar({ width }: { width: number }) {
+function Calendar({ width, onSelectDate }: { width: number; onSelectDate: (timestamp: number) => void }) {
   const [selectedDate, setSelectedDate] = useState(moment());
   // const [selectedDay, setSelectedDay] = useState(moment().startOf('day'));
 
@@ -55,6 +55,7 @@ function Calendar({ width }: { width: number }) {
           previousCurrentNextView={previousCurrentNextView.clone()}
           currentMonthView={selectedDate}
           key={previousCurrentNextView.week()}
+          onSelectDate={onSelectDate}
         />
       );
 
@@ -92,7 +93,13 @@ function Calendar({ width }: { width: number }) {
   )
 }
 
-function Week ({ previousCurrentNextView, currentMonthView }: { previousCurrentNextView: moment.Moment, currentMonthView: moment.Moment }) {
+function Week ({ previousCurrentNextView, currentMonthView, onSelectDate }:
+  {
+    previousCurrentNextView: moment.Moment;
+    currentMonthView: moment.Moment;
+    onSelectDate: (timestamp: number) => void;
+  }
+  ) {
   const days = [];
 
   let date = previousCurrentNextView;
@@ -100,13 +107,13 @@ function Week ({ previousCurrentNextView, currentMonthView }: { previousCurrentN
   for (let i = 0; i < 7; i++) {
     const day = {
       number: date.date(),
-      isEnable: date >= moment(),
+      isEnable: date >= moment().startOf('day'),
       date: date,
       isCurrentMonth: date.month() === currentMonthView.month(),
       isSunday: date.format('dd') === 'Su',
     }
 
-    days.push(<Day day={day} key={day.date.dayOfYear()} />);
+    days.push(<Day day={day} key={day.date.dayOfYear()} onSelectDate={onSelectDate} />);
     date = date.clone();
     date.add(1, 'd');
   }
@@ -127,10 +134,11 @@ interface DayProps {
     date: moment.Moment;
     isCurrentMonth: boolean;
     isSunday: boolean;
-  }
+  };
+  onSelectDate: (timestamp: number) => void
 }
 
-function Day ({ day }: DayProps) {
+function Day ({ day, onSelectDate }: DayProps) {
   const BASE_CLASS = 'calendar__day';
   const PAST_DAY_CLASS = 'past';
   const ANOTHER_MONTH_CLASS = 'another-month';
@@ -164,7 +172,11 @@ function Day ({ day }: DayProps) {
       return;
     }
 
-    console.log(day.date);
+    const timestamp = day.date.valueOf();
+
+    onSelectDate(timestamp)
+
+    console.log('from DAY component: ' + timestamp);
   }
 
   return (
