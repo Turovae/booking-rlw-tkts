@@ -23,4 +23,6 @@ export const dateRangeSlice = createSlice({
   }
 });
 
+export const { actions } = dateRangeSlice;
+
 export default dateRangeSlice.reducer;

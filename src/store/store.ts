@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import dateRangeReducer from './reducers/DateRangeSlice'
+import dateRangeReducer from './reducers/DateRangeSlice';
+import locationsReducer from './reducers/LocationsSlice';
 
 const rootReducer = combineReducers({
   dateRangeReducer,
+  locationsReducer,
 });
 
 export const setupStore = () => {
