@@ -4,11 +4,18 @@ import Calendar from '../Calendar/Calendar';
 import './DatePicker.scss';
 import moment from 'moment';
 
-function DatePicker () {
+interface DatePickerProps {
+  min?: number | null;
+  max?: number | null;
+  current?: number | null;
+  onChangeDate: (timestamp: number) => void;
+}
+
+function DatePicker ({ min = null, max = null, current = null, onChangeDate }: DatePickerProps) {
   const container = useRef<HTMLDivElement>(null);
   const [widthContainer, setWidthContainer] = useState(0);
   const [showCalendar, setShowCalendar] = useState(false);
-  const [date, setDate] = useState<number | null>(null);
+  // const [date, setDate] = useState<number | null>(null);
 
   useEffect(() => {
     const elem = container.current;
@@ -48,8 +55,8 @@ function DatePicker () {
     document.body.removeEventListener('click', clickOut);
   }
 
-  const setDateHandler = (timestamp: number): void => {
-    setDate(timestamp);
+  const handleSetDate = (timestamp: number): void => {
+    onChangeDate(timestamp);
     void closeCalendar();
   }
 
@@ -65,13 +72,18 @@ function DatePicker () {
   return (
     <div className='date-picker' ref={container}>
       <div className="date-picker__input-container">
-        <input type='text' placeholder='дд/мм/гггг' onFocus={openCalendar} value={dateFromTstToStr(date)}/>
+        <input type='text' placeholder='дд/мм/гггг' onFocus={openCalendar} value={dateFromTstToStr(current)} onChange={() => {}}/>
         <div className="date-picker__input-icon" />
       </div>
       {
         showCalendar &&
         <div className="date-picker__calendar">
-          <Calendar width={widthContainer} onSelectDate={setDateHandler} />
+          <Calendar
+            width={widthContainer}
+            minTimestamp={min}
+            maxTimestamp={max}
+            onSelectDate={handleSetDate}
+          />
         </div>
       }
     </div>

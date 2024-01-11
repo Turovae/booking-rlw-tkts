@@ -6,7 +6,14 @@ moment.updateLocale('ru', {
   months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль' ,'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
 });
 
-function Calendar({ width, onSelectDate }: { width: number; onSelectDate: (timestamp: number) => void }) {
+interface CalendarProps {
+  width: number;
+  minTimestamp: number | null;
+  maxTimestamp: number | null;
+  onSelectDate: (timestamp: number) => void;
+}
+
+function Calendar({ width, onSelectDate, minTimestamp, maxTimestamp }: CalendarProps) {
   const [selectedDate, setSelectedDate] = useState(moment());
 
   const renderMonthlabel = (): ReactElement => {
@@ -51,6 +58,8 @@ function Calendar({ width, onSelectDate }: { width: number; onSelectDate: (times
           currentMonthView={selectedDate}
           key={previousCurrentNextView.week()}
           onSelectDate={onSelectDate}
+          minTimestamp={minTimestamp}
+          maxTimestamp={maxTimestamp}
         />
       );
 
@@ -88,11 +97,13 @@ function Calendar({ width, onSelectDate }: { width: number; onSelectDate: (times
   )
 }
 
-function Week ({ previousCurrentNextView, currentMonthView, onSelectDate }:
+function Week ({ previousCurrentNextView, currentMonthView, onSelectDate, maxTimestamp = null, minTimestamp = null }:
   {
     previousCurrentNextView: moment.Moment;
     currentMonthView: moment.Moment;
     onSelectDate: (timestamp: number) => void;
+    maxTimestamp: number | null;
+    minTimestamp: number | null;
   }
   ) {
   const days = [];
@@ -100,9 +111,11 @@ function Week ({ previousCurrentNextView, currentMonthView, onSelectDate }:
   let date = previousCurrentNextView;
 
   for (let i = 0; i < 7; i++) {
+    const notLessThanMin = minTimestamp ? date > moment(minTimestamp) : true;
+    const notMoreThanMax = maxTimestamp ? date < moment(maxTimestamp) : true;
     const day = {
       number: date.date(),
-      isEnable: date >= moment().startOf('day'),
+      isEnable: date >= moment().startOf('day') && notLessThanMin && notMoreThanMax,
       date: date,
       isCurrentMonth: date.month() === currentMonthView.month(),
       isSunday: date.format('dd') === 'Su',

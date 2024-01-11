@@ -1,8 +1,21 @@
 import './SearchForm.scss';
 import DatePicker from '../DatePicker/DatePicker';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { dateRangeSlice } from '../../store/reducers/DateRangeSlice';
 
 function SearchForm() {
   const cityes = ['moskow', 'novosibirsk', 'krasnoyarsk', 'kemerovo', 'achinsk'];
+
+  const dispatch = useAppDispatch();
+  const { from: dateFrom, to: dateTo } = useAppSelector(state => state.dateRangeReducer);
+
+  const handleChangeDateFrom = (timestamp: number) => {
+    dispatch(dateRangeSlice.actions.changeFrom(timestamp));
+  }
+
+  const handleChangeDateTo = (timestamp: number) => {
+    dispatch(dateRangeSlice.actions.changeTo(timestamp));
+  }
 
   return (
     <form className="search-form" action="">
@@ -25,18 +38,18 @@ function SearchForm() {
         <span className="search-form__hint">Дата</span>
         <div className="search-form__inputs">
           <div className="search-form__input">
-            <input type="date" name="date-from" />
+            <DatePicker
+              current={dateFrom}
+              max={dateTo}
+              onChangeDate={handleChangeDateFrom}
+            />
           </div>
           <div className="search-form__input">
-            <input type="date" name="date-date-to" />
-          </div>
-        </div>
-      </div>
-      <div className="search-form__row">
-        <span className="search-form__hint">Дата (Date Picker)</span>
-        <div className="search-form__inputs">
-          <div className="search-form__input">
-            <DatePicker />
+            <DatePicker
+              current={dateTo}
+              min={dateFrom}
+              onChangeDate={handleChangeDateTo}
+            />
           </div>
         </div>
       </div>

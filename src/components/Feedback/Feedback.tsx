@@ -62,6 +62,7 @@ function FeedbackControl ({ page, numPages, elemName = '' }: { page: number; num
       dots.push(
         <div
           className={`feedback-control__dot${isActive ? ' feedback-control__dot_active' : ''}`}
+          key={i}
         />
       );
     }
