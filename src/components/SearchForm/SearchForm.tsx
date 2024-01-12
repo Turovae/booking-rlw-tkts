@@ -3,24 +3,30 @@ import DatePicker from '../DatePicker/DatePicker';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { actions as dateRangeActions } from '../../store/reducers/DateRangeSlice';
 import { actions as locationActions } from '../../store/reducers/LocationsSlice';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState, FocusEvent } from 'react';
+import { citiesAPI } from '../../services/GetCitiesService';
 
 function SearchForm() {
-  const cityes = ['moskow', 'novosibirsk', 'krasnoyarsk', 'kemerovo', 'achinsk'];
-
   const dispatch = useAppDispatch();
   const { from: dateFrom, to: dateTo } = useAppSelector(state => state.dateRangeReducer);
-  const { departure, destination } = useAppSelector(state => state.locationsReducer);
+  const locationTypes = useAppSelector(state => state.locationsReducer);
+  const { departure, destination } = locationTypes;
+
+  const [currentEditLocation, setCurrentEditLocation] = useState<string | null>(null);
+
+  const { data: cities } = citiesAPI.useFetchAllCitiesQuery(currentEditLocation);
 
   const handleChangeDeparture = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const location = event.target.value;
+    setCurrentEditLocation(location);
     dispatch(locationActions.changeDeparture(location));
   }
 
   const handleChangeDestination = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const location = event.target.value;
+    setCurrentEditLocation(location);
     dispatch(locationActions.changeDestination(location));
   }
 
@@ -36,6 +42,15 @@ function SearchForm() {
     dispatch(dateRangeActions.changeTo(timestamp));
   }
 
+  const handleSetEditLocation = (event: FocusEvent) => {
+    if (!event.target) return;
+
+    const { name } = event.target as HTMLInputElement;
+    const locationType = locationTypes[name as keyof typeof locationTypes];
+
+    setCurrentEditLocation(locationType);
+  }
+
   return (
     <form className="search-form" action="">
       <div className="search-form__row">
@@ -45,10 +60,11 @@ function SearchForm() {
             <input
               type="search"
               list="cities"
-              name="lacation-from"
+              name="departure"
               placeholder="Откуда"
               value={departure}
               onChange={handleChangeDeparture}
+              onFocus={handleSetEditLocation}
             />
           </div>
           <button
@@ -60,14 +76,17 @@ function SearchForm() {
             <input
               type="search"
               list="cities"
-              name="lacation-to"
+              name="destination"
               placeholder="Куда"
               value={destination}
               onChange={handleChangeDestination}
+              onFocus={handleSetEditLocation}
             />
           </div>
           <datalist id="cities">
-            {cityes.map((city) => <option key={city} value={city}>{city}</option>)}
+            {cities
+              && Array.isArray(cities)
+              && cities.map((city) => <option key={city._id} value={city.name}>{city.name}</option>)}
           </datalist>
         </div>
       </div>
