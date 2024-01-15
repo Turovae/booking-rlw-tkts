@@ -3,10 +3,14 @@ import DatePicker from '../DatePicker/DatePicker';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { actions as dateRangeActions } from '../../store/reducers/DateRangeSlice';
 import { actions as locationActions } from '../../store/reducers/LocationsSlice';
-import { ChangeEvent, useState, FocusEvent } from 'react';
+import { ChangeEvent, useState, FormEventHandler, FocusEventHandler } from 'react';
 import { citiesAPI } from '../../services/GetCitiesService';
 
-function SearchForm() {
+interface SearchFormProps {
+  onSubmit: () => void
+}
+
+function SearchForm({ onSubmit }: SearchFormProps) {
   const dispatch = useAppDispatch();
   const { from: dateFrom, to: dateTo } = useAppSelector(state => state.dateRangeReducer);
   const locationTypes = useAppSelector(state => state.locationsReducer);
@@ -42,75 +46,83 @@ function SearchForm() {
     dispatch(dateRangeActions.changeTo(timestamp));
   }
 
-  const handleSetEditLocation = (event: FocusEvent) => {
+  const handleSetEditLocation: FocusEventHandler<HTMLInputElement> = (event) => {
     if (!event.target) return;
 
-    const { name } = event.target as HTMLInputElement;
+    const { name } = event.target;
     const locationType = locationTypes[name as keyof typeof locationTypes];
 
     setCurrentEditLocation(locationType);
   }
 
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    onSubmit();
+  }
+
   return (
-    <form className="search-form" action="">
-      <div className="search-form__row">
-        <span className="search-form__hint">Направление</span>
-        <div className="search-form__inputs">
-          <div className="search-form__input">
-            <input
-              type="search"
-              list="cities"
-              name="departure"
-              placeholder="Откуда"
-              value={departure}
-              onChange={handleChangeDeparture}
-              onFocus={handleSetEditLocation}
+    <form className="search-form" action="" onSubmit={handleSubmit}>
+      <div className="search-form__main">
+        <div className="search-form__row">
+          <span className="search-form__hint">Направление</span>
+          <div className="search-form__inputs">
+            <div className="search-form__input">
+              <input
+                type="search"
+                list="cities"
+                name="departure"
+                placeholder="Откуда"
+                value={departure}
+                onChange={handleChangeDeparture}
+                onFocus={handleSetEditLocation}
+              />
+            </div>
+            <button
+              type="button"
+              className="search-form__direction-change"
+              onClick={handleReverseLocations}
             />
+            <div className="search-form__input">
+              <input
+                type="search"
+                list="cities"
+                name="destination"
+                placeholder="Куда"
+                value={destination}
+                onChange={handleChangeDestination}
+                onFocus={handleSetEditLocation}
+              />
+            </div>
+            <datalist id="cities">
+              {cities
+                && Array.isArray(cities)
+                && cities.map((city) => <option key={city._id} value={city.name}>{city.name}</option>)}
+            </datalist>
           </div>
-          <button
-            type="button"
-            className="search-form__direction-change"
-            onClick={handleReverseLocations}
-          />
-          <div className="search-form__input">
-            <input
-              type="search"
-              list="cities"
-              name="destination"
-              placeholder="Куда"
-              value={destination}
-              onChange={handleChangeDestination}
-              onFocus={handleSetEditLocation}
-            />
+        </div>
+        <div className="search-form__row">
+          <span className="search-form__hint">Дата</span>
+          <div className="search-form__inputs">
+            <div className="search-form__input">
+              <DatePicker
+                current={dateFrom}
+                max={dateTo}
+                onChangeDate={handleChangeDateFrom}
+              />
+            </div>
+            <div className="search-form__input">
+              <DatePicker
+                current={dateTo}
+                min={dateFrom}
+                onChangeDate={handleChangeDateTo}
+              />
+            </div>
           </div>
-          <datalist id="cities">
-            {cities
-              && Array.isArray(cities)
-              && cities.map((city) => <option key={city._id} value={city.name}>{city.name}</option>)}
-          </datalist>
         </div>
       </div>
       <div className="search-form__row">
-        <span className="search-form__hint">Дата</span>
-        <div className="search-form__inputs">
-          <div className="search-form__input">
-            <DatePicker
-              current={dateFrom}
-              max={dateTo}
-              onChangeDate={handleChangeDateFrom}
-            />
-          </div>
-          <div className="search-form__input">
-            <DatePicker
-              current={dateTo}
-              min={dateFrom}
-              onChangeDate={handleChangeDateTo}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="search-form__row">
-        <button className="search-form__button-submit" type='button'>Найти билеты</button>
+        <button className="search-form__button-submit" type='submit'>Найти билеты</button>
       </div>
     </form>
   )

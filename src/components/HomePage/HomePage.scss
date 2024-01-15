@@ -1,0 +1,27 @@
+.home {
+
+  .header {
+    background: no-repeat center/cover url(./img/bg.png);
+
+    &__col {
+      flex-basis:auto;
+    }
+
+    &__slogan {
+      display: none;
+    }
+  }
+
+  .search-form {
+
+    &__main {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    // &__inputs {
+    //   gap: 20px;
+    // }
+  }
+}

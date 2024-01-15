@@ -2,9 +2,16 @@
 .search-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
   padding: 80px 10px 60px;
   gap: 50px;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: space-between;
+  }
 
   &__row {
     line-height: 36px;
