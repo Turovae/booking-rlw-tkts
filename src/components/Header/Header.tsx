@@ -22,12 +22,16 @@ function Header() {
         </ul>
       </div>
       <div className="header__row container">
-        <div className="header__col">
+        {/* <div className="header__col">
           <h2 className="header__slogan">
             <span>Вся жизнь -</span>
             <br />
             <span className="header__slogan_bold">путешествие!</span>
           </h2>
+        </div> */}
+        <div className="header__col header__slogan">
+            <span>Вся жизнь -</span>
+            <span className="header__slogan_bold">путешествие!</span>
         </div>
         <div className="header__col">
           <div className="header__form">

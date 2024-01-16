@@ -29,7 +29,10 @@
   }
 
   &__slogan {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     font-size: 72px;
     font-weight: 100;

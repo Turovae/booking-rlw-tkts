@@ -33,6 +33,10 @@
     justify-content: space-between;
   }
 
+  &__dates {
+    gap: 24px;
+  }
+
   &__input {
     font-size: 30px;
     width: 325px;

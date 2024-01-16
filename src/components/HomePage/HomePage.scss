@@ -3,8 +3,13 @@
   .header {
     background: no-repeat center/cover url(./img/bg.png);
 
+    &__row {
+      margin-top: 100px;
+    }
+
     &__col {
       flex-basis:auto;
+      margin: 0 auto;
     }
 
     &__slogan {
@@ -13,15 +18,12 @@
   }
 
   .search-form {
+    gap: 0;
 
     &__main {
       display: flex;
       flex-direction: row;
-      gap: 20px;
+      gap: 24px;
     }
-
-    // &__inputs {
-    //   gap: 20px;
-    // }
   }
 }

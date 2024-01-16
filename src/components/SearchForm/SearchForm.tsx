@@ -103,7 +103,7 @@ function SearchForm({ onSubmit }: SearchFormProps) {
         </div>
         <div className="search-form__row">
           <span className="search-form__hint">Дата</span>
-          <div className="search-form__inputs">
+          <div className="search-form__inputs search-form__dates">
             <div className="search-form__input">
               <DatePicker
                 current={dateFrom}
