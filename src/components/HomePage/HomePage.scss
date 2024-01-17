@@ -1,3 +1,5 @@
+$temp-border: 1px solid blueviolet;
+
 .home {
 
   .header {
@@ -25,5 +27,20 @@
       flex-direction: row;
       gap: 24px;
     }
+  }
+
+  &__main {
+    display: flex;
+  }
+
+  &__sidebar {
+    border: $temp-border;
+    flex-basis: 360px;
+  }
+
+  &__content {
+    border: $temp-border;
+    flex-basis: auto;
+    flex-grow: 1;
   }
 }

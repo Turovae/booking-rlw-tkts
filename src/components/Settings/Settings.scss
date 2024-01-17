@@ -1,0 +1,42 @@
+$bg-color: #3E3C41;
+
+.settings {
+  width: 100%;
+  background: $bg-color;
+  color: #fff;
+
+  &__block {
+    border-bottom: 1px solid #ffffff;
+    padding: 30px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__date-row {
+    width: 100%;
+
+    margin-bottom: 26px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.date-row {
+  &__input {
+    width: 100%;
+    height: 43px;
+
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  &__title {
+    font-size: 30px;
+    line-height: 35px;
+    margin-bottom: 10px;
+  }
+}

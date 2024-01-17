@@ -28,6 +28,11 @@
   box-sizing: border-box;
 }
 
+input {
+  border: none;
+  outline: none;
+}
+
 body {
   font-family: Roboto;
 }

@@ -72,7 +72,14 @@ function DatePicker ({ min = null, max = null, current = null, onChangeDate }: D
   return (
     <div className='date-picker' ref={container}>
       <div className="date-picker__input-container">
-        <input type='text' placeholder='дд/мм/гггг' onFocus={openCalendar} value={dateFromTstToStr(current)} onChange={() => {}}/>
+        <input
+          type='text'
+          placeholder='дд/мм/гггг'
+          className='date-picker__input'
+          onFocus={openCalendar}
+          value={dateFromTstToStr(current)}
+          onChange={() => {}}
+        />
         <div className="date-picker__input-icon" />
       </div>
       {
