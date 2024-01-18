@@ -46,7 +46,7 @@ $toggler-on: #ffa800;
 
       position: absolute;
       z-index: 10;
-      left: 4px;
+      left: 0;
       top: -5px;
 
       transition: all .5s;
@@ -57,7 +57,7 @@ $toggler-on: #ffa800;
 
       &::after {
         background: $toggler-on;
-        left: 72px - 28px - 4px;
+        left: 72px - 28px;
       }
     }
   }

@@ -2,6 +2,7 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Settings from "../Settings/Settings";
+import Tickets from "../Tickets/Tickets";
 
 import './HomePage.scss';
 
@@ -18,7 +19,7 @@ function HomePage() {
             <Settings />
           </div>
           <div className="home__content">
-            Контент
+            <Tickets />
           </div>
         </div>
       </div>

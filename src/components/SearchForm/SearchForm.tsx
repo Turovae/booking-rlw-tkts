@@ -3,8 +3,8 @@ import DatePicker from '../DatePicker/DatePicker';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { actions as dateRangeActions } from '../../store/reducers/DateRangeSlice';
 import { actions as locationActions } from '../../store/reducers/LocationsSlice';
-import { ChangeEvent, useState, FormEventHandler, FocusEventHandler } from 'react';
-import { citiesAPI } from '../../services/GetCitiesService';
+import { FormEventHandler } from 'react';
+import CitySearch from '../UI/CitySearch/CitySearch';
 
 interface SearchFormProps {
   onSubmit: () => void
@@ -13,26 +13,7 @@ interface SearchFormProps {
 function SearchForm({ onSubmit }: SearchFormProps) {
   const dispatch = useAppDispatch();
   const { from: dateFrom, to: dateTo } = useAppSelector(state => state.dateRangeReducer);
-  const locationTypes = useAppSelector(state => state.locationsReducer);
-  const { departure, destination } = locationTypes;
-
-  const [currentEditLocation, setCurrentEditLocation] = useState<string | null>(null);
-
-  const { data: cities } = citiesAPI.useFetchAllCitiesQuery(currentEditLocation);
-
-  const handleChangeDeparture = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    const location = event.target.value;
-    setCurrentEditLocation(location);
-    dispatch(locationActions.changeDeparture(location));
-  }
-
-  const handleChangeDestination = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    const location = event.target.value;
-    setCurrentEditLocation(location);
-    dispatch(locationActions.changeDestination(location));
-  }
+  const { departure, destination } = useAppSelector(state => state.locationsReducer);
 
   const handleReverseLocations = () => {
     dispatch(locationActions.reverseLocations());
@@ -44,15 +25,6 @@ function SearchForm({ onSubmit }: SearchFormProps) {
 
   const handleChangeDateTo = (timestamp: number) => {
     dispatch(dateRangeActions.changeTo(timestamp));
-  }
-
-  const handleSetEditLocation: FocusEventHandler<HTMLInputElement> = (event) => {
-    if (!event.target) return;
-
-    const { name } = event.target;
-    const locationType = locationTypes[name as keyof typeof locationTypes];
-
-    setCurrentEditLocation(locationType);
   }
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
@@ -68,14 +40,11 @@ function SearchForm({ onSubmit }: SearchFormProps) {
           <span className="search-form__hint">Направление</span>
           <div className="search-form__inputs">
             <div className="search-form__input">
-              <input
-                type="search"
-                list="cities"
-                name="departure"
-                placeholder="Откуда"
-                value={departure}
-                onChange={handleChangeDeparture}
-                onFocus={handleSetEditLocation}
+              <CitySearch
+                name='departure'
+                placeholder='Откуда'
+                initValue={departure.name}
+                changeCity={locationActions.changeDeparture}
               />
             </div>
             <button
@@ -84,21 +53,13 @@ function SearchForm({ onSubmit }: SearchFormProps) {
               onClick={handleReverseLocations}
             />
             <div className="search-form__input">
-              <input
-                type="search"
-                list="cities"
-                name="destination"
-                placeholder="Куда"
-                value={destination}
-                onChange={handleChangeDestination}
-                onFocus={handleSetEditLocation}
+              <CitySearch 
+                name='destination'
+                placeholder='Куда'
+                initValue={destination.name}
+                changeCity={locationActions.changeDestination}
               />
             </div>
-            <datalist id="cities">
-              {cities
-                && Array.isArray(cities)
-                && cities.map((city) => <option key={city._id} value={city.name}>{city.name}</option>)}
-            </datalist>
           </div>
         </div>
         <div className="search-form__row">
