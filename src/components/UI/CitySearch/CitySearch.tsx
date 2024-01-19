@@ -3,21 +3,19 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import './CitySearch.scss';
 
 import { City } from '../../../models/City';
-import { citiesAPI } from '../../../services/GetCitiesService';
 import { useAppDispatch } from '../../../hooks/redux';
-import { UnknownAction } from 'redux';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { routesAPI } from '../../../services/GetRoutesService';
 
 interface CitySearchProps {
   name: string;
   placeholder: string;
   initValue: string;
-  changeCity: (city: City) => void;
+  changeCity: ActionCreatorWithPayload<City, string>
 }
 
 function CitySearch({ name, placeholder, initValue, changeCity }: CitySearchProps) {
-  console.log(initValue);
   const [value, setValue] = useState(initValue);
-  console.log(value);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -30,19 +28,15 @@ function CitySearch({ name, placeholder, initValue, changeCity }: CitySearchProp
     setValue(initValue);
   }, [initValue]);
 
-  const { data: cities } = citiesAPI.useFetchAllCitiesQuery(value);
+  // const { data: cities } = citiesAPI.useFetchAllCitiesQuery(value);
+  const { data: cities } = routesAPI.useFetchAllCitiesQuery(value);
 
   const dispatch = useAppDispatch();
 
-  console.log('CitySearch')
-  console.log(cities);
-
   useEffect(() => {
-    console.log('change value or cities')
     if (!Array.isArray(cities) || cities.length < 1) return;
     if (cities.length === 1 && cities[0].name === value) {
-      console.log(cities[0]);
-      dispatch(changeCity(cities[0]) as unknown as UnknownAction);
+      dispatch(changeCity(cities[0]));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, cities]);
