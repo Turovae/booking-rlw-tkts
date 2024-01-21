@@ -1,0 +1,26 @@
+$header-color: #928F94;
+
+.train-routes {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 45px;
+
+    color: $header-color;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 50px;
+  }
+
+  &__sort {
+    outline: none;
+    border: none;
+    appearance: none;
+
+    :focus {
+      outline: none;
+    }
+  }
+}

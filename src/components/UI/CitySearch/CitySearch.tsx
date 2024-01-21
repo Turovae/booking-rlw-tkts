@@ -28,7 +28,6 @@ function CitySearch({ name, placeholder, initValue, changeCity }: CitySearchProp
     setValue(initValue);
   }, [initValue]);
 
-  // const { data: cities } = citiesAPI.useFetchAllCitiesQuery(value);
   const { data: cities } = routesAPI.useFetchAllCitiesQuery(value);
 
   const dispatch = useAppDispatch();

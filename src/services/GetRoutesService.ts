@@ -11,7 +11,7 @@ export const routesAPI = createApi({
       query: (data) => ({
         url: '/',
         params: {
-          data,
+          ...data,
         }
       })
     }),

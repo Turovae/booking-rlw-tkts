@@ -1,6 +1,6 @@
-import { Train } from "./Train";
+import { Route } from "./Route";
 
 export interface Routes {
   total_count: number;
-  items: Train[];
+  items: Route[];
 }

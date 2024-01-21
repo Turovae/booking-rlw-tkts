@@ -2,7 +2,7 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Settings from "../Settings/Settings";
-import Tickets from "../Tickets/Tickets";
+import TrainRoutes from "../TrainRoutes/TrainRoutes";
 
 import './HomePage.scss';
 
@@ -19,7 +19,7 @@ function HomePage() {
             <Settings />
           </div>
           <div className="home__content">
-            <Tickets />
+            <TrainRoutes />
           </div>
         </div>
       </div>
