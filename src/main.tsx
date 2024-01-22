@@ -11,8 +11,11 @@ import HomePage from './components/HomePage/HomePage.tsx';
 
 const store = setupStore();
 
+// eslint-disable-next-line react-refresh/only-export-components
+const BASENAME = import.meta.env.VITE_PUBLIC_BASENAME || '/';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
+  <BrowserRouter basename={BASENAME}>
     <Provider store={store}>
       <Routes>
         <Route path='/' element={<MainPage />} />

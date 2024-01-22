@@ -69,20 +69,8 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
 
         if (Math.abs(i) === 2) {
           createButton('...');
-          // buttons.push(
-          //   <button
-          //     className={getClassName('...')}
-          //     // onClick={() => setPage(1)}
-          //   >{'...'}</button>
-          // )
         } else {
           createButton(current);
-          // buttons.push(
-          //   <button
-          //     className={getClassName(current)}
-          //     onClick={() => setPage(current)}
-          //   >{current}</button>
-          // )
         }
       }
     }
