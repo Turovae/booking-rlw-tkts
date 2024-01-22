@@ -1,5 +1,3 @@
-import { Sort } from "./Sort";
-
 export interface GetRoutes {
   from_city_id: string;
   to_city_id: string;
@@ -25,5 +23,5 @@ export interface GetRoutes {
   end_arrival_hour_to?: number;
   limit?: number;
   offset?: number;
-  sort?: Sort;
+  sort?: string;
 }

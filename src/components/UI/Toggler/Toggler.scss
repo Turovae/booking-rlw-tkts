@@ -1,0 +1,18 @@
+.toggler {
+  display: inline-flex;
+  gap: .5em;
+  font: inherit;
+
+  &__label {
+    font: inherit;
+    cursor: pointer;
+  }
+
+  &__label.checked {
+    font-weight: 700;
+  }
+
+  &__checkbox {
+    appearance: none;
+  }
+}

@@ -18,9 +18,21 @@ $header-color: #928F94;
     outline: none;
     border: none;
     appearance: none;
+    font: inherit;
+    font-weight: 700;
 
     :focus {
       outline: none;
     }
+  }
+
+  &__amount-toggler {
+    .checked {
+      color: #000;
+    }
+  }
+
+  &__footer {
+    margin-top: 140px;
   }
 }
