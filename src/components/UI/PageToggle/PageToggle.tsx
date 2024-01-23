@@ -13,7 +13,7 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
 
   const buttons = [];
 
-  const getClassName = (index: number | string): string => {
+  const getClassName = (index?: number | string): string => {
     const baseClass = 'page-toggle__button';
 
     if (index === '...') {
@@ -86,14 +86,22 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
   return (
     <div className="page-toggle">
       <button
-        className='page-toggle__button'
+        className={
+          page === 1
+          ? getClassName('...')
+          : getClassName()
+        }
         onClick={setPreviousPage}
       >{'<'}</button>
 
       {buttons}
 
       <button
-        className='page-toggle__button'
+        className={
+          page === count
+          ? getClassName('...')
+          : getClassName()
+        }
         onClick={setNextPage}
       >{'>'}</button>
     </div>
