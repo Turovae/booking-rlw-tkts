@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import dateRangeReducer from './reducers/DateRangeSlice';
 import locationsReducer from './reducers/LocationsSlice';
+import comfortReducer from './reducers/ComfortSlice';
 import { routesAPI } from "../services/GetRoutesService";
 
 const rootReducer = combineReducers({
   dateRangeReducer,
   locationsReducer,
+  comfortReducer,
   [routesAPI.reducerPath]: routesAPI.reducer,
 });
 

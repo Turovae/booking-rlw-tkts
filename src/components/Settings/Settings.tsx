@@ -29,12 +29,38 @@ function Settings() {
         </div>
       </div>
       <div className="settings__block">
-        <ToggleSwitch
-          icon={secondClassIcon}
-          name='have_second_class'
-          title='Купе'
-          onChange={() => {console.log('change checkbox')}}
-        />
+        <div className="settings__toggles">
+          <ToggleSwitch
+            icon={secondClassIcon}
+            name='have_second_class'
+            title='Купе'
+          />
+          <ToggleSwitch
+            icon={secondClassIcon}
+            name='have_second_class'
+            title='Купе'
+          />
+          <ToggleSwitch
+            icon={secondClassIcon}
+            name='have_second_class'
+            title='Купе'
+          />
+          <ToggleSwitch
+            icon={secondClassIcon}
+            name='have_second_class'
+            title='Купе'
+          />
+          <ToggleSwitch
+            icon={secondClassIcon}
+            name='have_second_class'
+            title='Купе'
+          />
+          <ToggleSwitch
+            icon={secondClassIcon}
+            name='have_second_class'
+            title='Купе'
+          />
+        </div>
       </div>
     </div>
   );

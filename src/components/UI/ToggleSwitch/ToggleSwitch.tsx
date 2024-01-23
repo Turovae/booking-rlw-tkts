@@ -1,28 +1,28 @@
-import { useState } from "react";
-
 import './ToggleSwitch.scss';
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { changeComfortSettings } from "../../../store/reducers/ComfortSlice";
 
 interface ToggleSwitchProps {
   name: string;
   icon: string;
   title: string;
-  checked?: boolean;
-  onChange: () => void;
 }
 
 function ToggleSwitch({
   name,
   icon,
   title,
-  checked,
-  onChange = () => {}
 }: ToggleSwitchProps) {
-  const [isChecked, setIsChecked] = useState<boolean>(checked ? checked : false)
+
+  const dispatch = useAppDispatch();
+  const comfortParams = useAppSelector(state => state.comfortReducer);
+  const checked = comfortParams[name as keyof typeof comfortParams]
 
   const handleChange = () => {
-    onChange();
-
-    setIsChecked(!isChecked);
+    dispatch(changeComfortSettings({
+      name,
+      checked: !checked,
+    }))
   }
 
   return (
@@ -34,7 +34,7 @@ function ToggleSwitch({
           className="toggle-switch__checkbox"
           type="checkbox"
           name={name}
-          checked={isChecked}
+          checked={checked}
           onChange={handleChange}
         />
       </label>

@@ -13,9 +13,14 @@ function TrainRoutes() {
   const [ perPage, setPerPage ] = useState(5);
   const [ page, setPage ] = useState(1);
 
+  const comfortParams = useAppSelector(state => state.comfortReducer);
+
   const getOffset = (): number => {
     return perPage * (page - 1);
   }
+
+  console.log(departure);
+  console.log(destination);
 
   const requestData: GetRoutes = {
     from_city_id: departure._id,
@@ -23,6 +28,8 @@ function TrainRoutes() {
     limit: perPage,
     sort: sortBy,
     offset: getOffset(),
+
+    ...comfortParams,
   }
 
   const { data: routesObj, isLoading: isLoadingRoutes } = routesAPI.useFetchAllRoutesQuery(requestData);

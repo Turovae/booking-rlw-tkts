@@ -1,6 +1,11 @@
 $header-color: #928F94;
 
 .train-routes {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -30,6 +35,10 @@ $header-color: #928F94;
     .checked {
       color: #000;
     }
+  }
+
+  &__main {
+    flex-grow: 1;
   }
 
   &__footer {

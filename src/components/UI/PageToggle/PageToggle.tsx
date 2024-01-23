@@ -109,4 +109,3 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
 }
 
 export default PageToggle;
-// 146

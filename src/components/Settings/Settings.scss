@@ -23,6 +23,12 @@ $bg-color: #3E3C41;
       margin-bottom: 0;
     }
   }
+
+  &__toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
 }
 
 .date-row {

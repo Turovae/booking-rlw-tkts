@@ -25,7 +25,7 @@ function Toggler({name, items, current, onClick}: TogglerProps) {
             type='checkbox'
             name={name}
             checked={isChecked(item)}
-            onClick={() => onClick(item)}
+            onChange={() => onClick(item)}
           />
         </label>
       )}
