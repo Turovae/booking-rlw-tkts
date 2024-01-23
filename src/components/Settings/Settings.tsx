@@ -1,9 +1,16 @@
 import './Settings.scss';
 
 import DatePicker from "../DatePicker/DatePicker";
-
-import secondClassIcon from './icons/have_second_class.svg';
 import ToggleSwitch from '../UI/ToggleSwitch/ToggleSwitch';
+
+import firstClassIcon from './icons/have_first_class.svg';
+import secondClassIcon from './icons/have_second_class.svg';
+import thirdClassIcon from './icons/have_third_class.svg';
+import fourthClassIcon from './icons/have_fourth_class.svg';
+import wifiIcon from './icons/have_wifi.svg';
+import airConditioningIcon from './icons/have_air_conditioning.svg';
+import expressIcon from './icons/have_express.svg';
+
 
 function Settings() {
   return (
@@ -36,29 +43,34 @@ function Settings() {
             title='Купе'
           />
           <ToggleSwitch
-            icon={secondClassIcon}
-            name='have_second_class'
-            title='Купе'
+            icon={thirdClassIcon}
+            name='have_third_class'
+            title='Плацкарт'
+          />
+          <ToggleSwitch
+            icon={fourthClassIcon}
+            name='have_fourth_class'
+            title='Сидячий'
+          />
+          <ToggleSwitch
+            icon={firstClassIcon}
+            name='have_first_class'
+            title='Люкс'
           />
           <ToggleSwitch
             icon={secondClassIcon}
-            name='have_second_class'
-            title='Купе'
+            name='have_wifi'
+            title='Wi-Fi'
           />
           <ToggleSwitch
-            icon={secondClassIcon}
-            name='have_second_class'
-            title='Купе'
+            icon={airConditioningIcon}
+            name='have_air_conditioning'
+            title='Кондиционер'
           />
           <ToggleSwitch
-            icon={secondClassIcon}
-            name='have_second_class'
-            title='Купе'
-          />
-          <ToggleSwitch
-            icon={secondClassIcon}
-            name='have_second_class'
-            title='Купе'
+            icon={expressIcon}
+            name='have_express'
+            title='Экспресс'
           />
         </div>
       </div>
