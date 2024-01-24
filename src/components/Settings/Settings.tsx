@@ -10,6 +10,7 @@ import fourthClassIcon from './icons/have_fourth_class.svg';
 import wifiIcon from './icons/have_wifi.svg';
 import airConditioningIcon from './icons/have_air_conditioning.svg';
 import expressIcon from './icons/have_express.svg';
+import RangeSlider from '../UI/RangeSlider/RangeSlider';
 
 
 function Settings() {
@@ -58,7 +59,7 @@ function Settings() {
             title='Люкс'
           />
           <ToggleSwitch
-            icon={secondClassIcon}
+            icon={wifiIcon}
             name='have_wifi'
             title='Wi-Fi'
           />
@@ -73,6 +74,13 @@ function Settings() {
             title='Экспресс'
           />
         </div>
+      </div>
+      <div className="settings__block">
+        <div className="settings__title">Стоимость</div>
+        <RangeSlider
+          min={1000}
+          max={6000}
+        />
       </div>
     </div>
   );
