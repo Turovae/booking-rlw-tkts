@@ -19,7 +19,7 @@ $thumb-color: #ffffff;
   border-radius: 0px;
   border: 0 none;
   cursor: grab;
-  background-color: red;
+  background-color: $thumb-color;
 
   &:active {
     cursor: grabbing;
@@ -27,10 +27,7 @@ $thumb-color: #ffffff;
 }
 
 .range-slider {
-  border: 1px dashed darkblue;
   position: relative;
-  // display: flex;
-  // align-items: center;
   &__row {
     display: flex;
     justify-content: space-between;

@@ -14,13 +14,16 @@ function TrainRoutes() {
   const [ page, setPage ] = useState(1);
 
   const comfortParams = useAppSelector(state => state.comfortReducer);
+  const priceRange = useAppSelector(state => state.priceRangeReducer);
+
+  console.log(priceRange);
 
   const getOffset = (): number => {
     return perPage * (page - 1);
   }
 
-  console.log(departure);
-  console.log(destination);
+  // console.log(departure);
+  // console.log(destination);
 
   const requestData: GetRoutes = {
     from_city_id: departure._id,
@@ -30,6 +33,7 @@ function TrainRoutes() {
     offset: getOffset(),
 
     ...comfortParams,
+    ...priceRange,
   }
 
   const { data: routesObj, isLoading: isLoadingRoutes } = routesAPI.useFetchAllRoutesQuery(requestData);
@@ -41,6 +45,8 @@ function TrainRoutes() {
     routes = routesObj.items;
     totalCount = routesObj.total_count;
   }
+
+  console.log(routes);
 
   const changePerPage = (item: number | string) => {
     console.log(item);
@@ -80,7 +86,7 @@ function TrainRoutes() {
       </div>
       <div className="train-routes__main">
         {isLoadingRoutes && <div>Идет загрузка</div>}
-        {routes.map((route) => <div>{route.departure.train.name}</div>)
+        {routes.map((route) => <div key={route.departure._id}>{route.departure.train.name}</div>)
         }
       </div>
       <div className="train-routes__footer">

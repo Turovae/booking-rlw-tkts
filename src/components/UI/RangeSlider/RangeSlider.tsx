@@ -1,21 +1,51 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import './RangeSlider.scss';
+import debounce from '../../../utils/debounce';
+
+export interface RangeValues {
+  minValue: number;
+  maxValue: number;
+}
 
 interface RangeSliderProps {
   min: number;
   max: number;
   step?: number;
+  onChange: (value: RangeValues) => void;
 }
 
-function RangeSlider({ min, max, step = 1 }: RangeSliderProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let debounceChange: ((...args: any) => void) | ((arg0: { minValue: number; maxValue: number; }) => void);
+
+function RangeSlider({ min, max, step = 1, onChange }: RangeSliderProps) {
   const [minValue, setMinValue] = useState(min);
   const [maxValue, setMaxValue] = useState(max);
+
+  // Попытка debounce через хук - не работает
+  // const deferredMinValue = useDeferredValue(minValue);
+  // const deferredMaxValue = useDeferredValue(maxValue);
+
+  // useEffect(() => {
+  //   console.log('deferred', {
+  //     deferredMinValue,
+  //     deferredMaxValue,
+  //   });
+  // }, [deferredMinValue, deferredMaxValue])
+
+  // отложенный вызов onChange
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    debounceChange = debounce(onChange, 1000);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleMinChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const value = Number.parseFloat(event.target.value);
     const newMinValue = Math.min(value, maxValue - step);
     setMinValue(newMinValue);
+
+    debounceChange({ minValue: newMinValue, maxValue });
   }
 
   const handleMaxChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +53,8 @@ function RangeSlider({ min, max, step = 1 }: RangeSliderProps) {
     const value = Number.parseFloat(event.target.value);
     const newMaxValue = Math.max(value, minValue + step);
     setMaxValue(newMaxValue);
+
+    debounceChange({ minValue, maxValue: newMaxValue });
   }
 
   const minPos = ((minValue - min) / (max - min)) * 100;

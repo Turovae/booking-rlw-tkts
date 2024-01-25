@@ -40,6 +40,7 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
   const createButton = (title: number | string) => {
     buttons.push(
       <button
+        key={buttons.length}
         className={getClassName(title)}
         onClick={typeof title === 'number' ? () => setPage(title) : () => {}}
       >{title}</button>
