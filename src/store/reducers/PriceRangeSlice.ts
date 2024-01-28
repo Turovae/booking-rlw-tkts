@@ -24,8 +24,6 @@ export const priceRangeSlice = createSlice({
       const { price_from, price_to } = action.payload;
       state.price_from = price_from;
       state.price_to = price_to;
-      console.log(state);
-      console.log(action.payload);
     }
   }
 });

@@ -12,7 +12,9 @@ import airConditioningIcon from './icons/have_air_conditioning.svg';
 import expressIcon from './icons/have_express.svg';
 import RangeSlider, { RangeValues } from '../UI/RangeSlider/RangeSlider';
 import { actions as priceRangeActions } from '../../store/reducers/PriceRangeSlice';
+import { actions as startHoursRangeActions } from '../../store/reducers/StartHoursSlice';
 import { useAppDispatch } from '../../hooks/redux';
+import TimeRange from '../TimeRange/TimeRange';
 
 
 function Settings() {
@@ -24,6 +26,24 @@ function Settings() {
     dispatch(priceRangeActions.changeAll({
       price_from: priceRange.minValue,
       price_to: priceRange.maxValue,
+    }))
+  }
+
+  const handleChangeStartDepartureHours = (departureHours: RangeValues) => {
+    console.log('departureHours: ', departureHours);
+
+    dispatch(startHoursRangeActions.changeDepartureHoursRange({
+      start_departure_hour_from: departureHours.minValue,
+      start_departure_hour_to: departureHours.maxValue,
+    }))
+  }
+
+  const handleChangeStartArrivalHours = (arrivalHours: RangeValues) => {
+    console.log('arrivalHours: ', arrivalHours);
+
+    dispatch(startHoursRangeActions.changeArrivalHoursRange({
+      start_arrival_hour_from: arrivalHours.minValue,
+      start_arrival_hour_to: arrivalHours.maxValue,
     }))
   }
 
@@ -105,6 +125,12 @@ function Settings() {
           min={100}
           max={10000}
           onChange={handleChangePriceRange}
+        />
+      </div>
+      <div className="settings__block">
+        <TimeRange
+          onChangeDepartureHours={handleChangeStartDepartureHours}
+          onChangeArrivalHours={handleChangeStartArrivalHours}
         />
       </div>
     </div>

@@ -13,14 +13,14 @@ export interface GetRoutes {
   have_express?: boolean;
   price_from?: number;
   price_to?: number;
-  start_departure_hour_from?: number;
-  start_departure_hour_to?: number;
-  start_arrival_hour_from?: number;
-  start_arrival_hour_to?: number;
-  end_departure_hour_from?: number;
-  end_departure_hour_to?: number;
-  end_arrival_hour_from?: number;
-  end_arrival_hour_to?: number;
+  start_departure_hour_from?: number; // Час отбытия от
+  start_departure_hour_to?: number; // Час отбытия до
+  start_arrival_hour_from?: number; // Час прибытия от
+  start_arrival_hour_to?: number; // Час прибытия до
+  end_departure_hour_from?: number; // Час отбытия назад от
+  end_departure_hour_to?: number; // Час отбытия назад до
+  end_arrival_hour_from?: number; // Час прибытия назад от (работает при установленном параметре date_end)
+  end_arrival_hour_to?: number; // Час прибытия назад до (работает при установленном параметре date_end)
   limit?: number;
   offset?: number;
   sort?: string;

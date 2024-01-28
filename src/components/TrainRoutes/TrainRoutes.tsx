@@ -15,6 +15,7 @@ function TrainRoutes() {
 
   const comfortParams = useAppSelector(state => state.comfortReducer);
   const priceRange = useAppSelector(state => state.priceRangeReducer);
+  const startHoursRanges = useAppSelector(state => state.startHoursRangeReducer);
 
   console.log(priceRange);
 
@@ -24,6 +25,7 @@ function TrainRoutes() {
 
   // console.log(departure);
   // console.log(destination);
+  console.log(startHoursRanges);
 
   const requestData: GetRoutes = {
     from_city_id: departure._id,
@@ -34,6 +36,7 @@ function TrainRoutes() {
 
     ...comfortParams,
     ...priceRange,
+    ...startHoursRanges,
   }
 
   const { data: routesObj, isLoading: isLoadingRoutes } = routesAPI.useFetchAllRoutesQuery(requestData);

@@ -3,6 +3,7 @@ import dateRangeReducer from './reducers/DateRangeSlice';
 import locationsReducer from './reducers/LocationsSlice';
 import comfortReducer from './reducers/ComfortSlice';
 import priceRangeReducer from './reducers/PriceRangeSlice';
+import startHoursRangeReducer from './reducers/StartHoursSlice';
 import { routesAPI } from "../services/GetRoutesService";
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   locationsReducer,
   comfortReducer,
   priceRangeReducer,
+  startHoursRangeReducer,
   [routesAPI.reducerPath]: routesAPI.reducer,
 });
 

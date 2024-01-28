@@ -1,5 +1,5 @@
 import { ChangeEvent, useMemo, useState } from 'react';
-import './RangeSlider.scss';
+import './RangeTimeSlider.scss';
 import debounce from '../../../utils/debounce';
 
 export interface RangeValues {
@@ -7,14 +7,14 @@ export interface RangeValues {
   maxValue: number;
 }
 
-interface RangeSliderProps {
-  min: number;
-  max: number;
-  step?: number;
+interface RangeTimeSliderProps {
   onChange: (value: RangeValues) => void;
 }
 
-function RangeSlider({ min, max, step = 1, onChange }: RangeSliderProps) {
+function RangeTimeSlider({ onChange }: RangeTimeSliderProps) {
+  const min = 0;
+  const max = 24;
+  const step = 1;
   const [minValue, setMinValue] = useState(min);
   const [maxValue, setMaxValue] = useState(max);
 
@@ -44,15 +44,15 @@ function RangeSlider({ min, max, step = 1, onChange }: RangeSliderProps) {
   const maxPos = ((maxValue - min) / (max - min)) * 100;
 
   return (
-    <div className="range-slider">
-      <div className="range-slider__row">
-        <div className="range-slider__col">от {minValue}</div>
-        <div className="range-slider__col">до {maxValue}</div>
+    <div className="range-time-slider">
+      <div className="range-time-slider__row">
+        <div className="range-time-slider__col">от {minValue}:00</div>
+        <div className="range-time-slider__col">до {maxValue}:00</div>
       </div>
-      <div className="range-slider__body">
-        <div className="range-slider__inputs">
+      <div className="range-time-slider__body">
+        <div className="range-time-slider__inputs">
           <input
-            className='range-slider__input'
+            className='range-time-slider__input'
             type='range'
             value={minValue}
             min={min}
@@ -61,7 +61,7 @@ function RangeSlider({ min, max, step = 1, onChange }: RangeSliderProps) {
             onChange={handleMinChange}
           />
           <input
-            className='range-slider__input'
+            className='range-time-slider__input'
             type='range'
             value={maxValue}
             min={min}
@@ -70,37 +70,37 @@ function RangeSlider({ min, max, step = 1, onChange }: RangeSliderProps) {
             onChange={handleMaxChange}
           />
         </div>
-        <div className="range-slider__controls">
+        <div className="range-time-slider__controls">
           <div
-            className="range-slider__control range-slider__control-max"
+            className="range-time-slider__control range-time-slider__control-max"
             style={{
               left: `${minPos}%`
             }}
           />
           <div
-            className="range-slider__control range-slider__control-max"
+            className="range-time-slider__control range-time-slider__control-max"
             style={{
               left: `${maxPos}%`,
             }}
           />
           <div
-            className='range-slider__inner-rail'
+            className='range-time-slider__inner-rail'
             style={{
               left: `${minPos}%`,
               right: `${100 - maxPos}%`
             }}
           />
         </div>
-        <div className="range-slider__rail">
+        <div className="range-time-slider__rail">
 
         </div>
       </div>
-      <div className="range-slider__row">
-        <div className="range-slider__col">{min}</div>
-        <div className="range-slider__col">{max}</div>
+      <div className="range-time-slider__row">
+        <div className="range-time-slider__col">{min}:00</div>
+        <div className="range-time-slider__col">{max}:00</div>
       </div>
     </div>
   );
 }
 
-export default RangeSlider;
+export default RangeTimeSlider;
