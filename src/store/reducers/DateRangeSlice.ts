@@ -1,25 +1,35 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface DateRangeState {
-  from: number | null;
-  to: number | null;
+  date_start: number | null;
+  date_end: number | null;
+  date_start_arrival: number | null;
+  date_end_arrival: number | null;
 }
 
 const initialState: DateRangeState = {
-  from: null,
-  to: null,
+  date_start: null,
+  date_end: null,
+  date_start_arrival: null,
+  date_end_arrival: null,
 }
 
 export const dateRangeSlice = createSlice({
   name: 'dateRange',
   initialState,
   reducers: {
-    changeFrom: (state, action: PayloadAction<number>) => {
-      state.from = action.payload;
+    changeStart: (state, action: PayloadAction<number>) => {
+      state.date_start = action.payload;
     },
-    changeTo: (state, action: PayloadAction<number>) => {
-      state.to = action.payload;
-    }
+    changeEnd: (state, action: PayloadAction<number>) => {
+      state.date_end = action.payload;
+    },
+    changeStartArrival: (state, action: PayloadAction<number>) => {
+      state.date_start_arrival = action.payload;
+    },
+    changeEndArrival: (state, action: PayloadAction<number>) => {
+      state.date_end_arrival = action.payload;
+    },
   }
 });
 

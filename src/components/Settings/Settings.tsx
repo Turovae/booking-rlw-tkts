@@ -13,15 +13,31 @@ import backwardIcon from './icons/backward-icon.svg';
 import DatePicker from "../DatePicker/DatePicker";
 import ToggleSwitch from '../UI/ToggleSwitch/ToggleSwitch';
 import RangeSlider, { RangeValues } from '../UI/RangeSlider/RangeSlider';
+import TimeRange from '../TimeRange/TimeRange';
+
+import { actions as dateRangeActions } from '../../store/reducers/DateRangeSlice';
 import { actions as priceRangeActions } from '../../store/reducers/PriceRangeSlice';
 import { actions as startHoursRangeActions } from '../../store/reducers/StartHoursSlice';
 import { actions as endHoursRangeActions } from '../../store/reducers/EndHoursSlice';
-import { useAppDispatch } from '../../hooks/redux';
-import TimeRange from '../TimeRange/TimeRange';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 function Settings() {
   const dispatch = useAppDispatch();
+
+  const { date_start_arrival, date_end_arrival } = useAppSelector(state => state.dateRangeReducer);
+
+  const handleChangeDateFrom = (timestamp: number) => {
+    // console.log(timestamp);
+
+    dispatch(dateRangeActions.changeStartArrival(timestamp));
+  }
+
+  const handleChangeDateTo = (timestamp: number) => {
+    // console.log(timestamp);
+
+    dispatch(dateRangeActions.changeEndArrival(timestamp));
+  }
 
   const handleChangePriceRange = ( priceRange: RangeValues ) => {
     // console.log(priceRange);
@@ -74,19 +90,19 @@ function Settings() {
         <div className="settings__date-row date-row">
           <div className="date-row__title">Дата поездки</div>
           <div className="date-row__input">
-            <DatePicker onChangeDate={function (timestamp: number): void {
-              console.log(timestamp);
-              throw new Error("Function not implemented.");
-            }} />
+            <DatePicker
+              current={date_start_arrival}
+              max={date_end_arrival}
+              onChangeDate={handleChangeDateFrom} />
           </div>
         </div>
         <div className="settings__date-row date-row">
           <div className="date-row__title">Дата возвращения</div>
           <div className="date-row__input">
-            <DatePicker onChangeDate={function (timestamp: number): void {
-              console.log(timestamp);
-              throw new Error("Function not implemented.");
-            }} />
+            <DatePicker
+              current={date_end_arrival}
+              min={date_start_arrival}
+              onChangeDate={handleChangeDateTo} />
           </div>
         </div>
       </div>

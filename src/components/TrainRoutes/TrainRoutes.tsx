@@ -6,29 +6,31 @@ import { Route } from '../../models/Route';
 import { ChangeEvent, useState } from 'react';
 import Toggler from '../UI/Toggler/Toggler';
 import PageToggle from '../UI/PageToggle/PageToggle';
+import { timestampToRequestDate } from '../../utils/dateTranslate';
+import { extractDeterminedFields } from '../../utils/extractDetermined';
 
 function TrainRoutes() {
-  const { departure, destination } = useAppSelector(state => state.locationsReducer);
   const [ sortBy, setSortBy ] = useState<string>('date');
   const [ perPage, setPerPage ] = useState(5);
   const [ page, setPage ] = useState(1);
 
+  const { departure, destination } = useAppSelector(state => state.locationsReducer);
   const comfortParams = useAppSelector(state => state.comfortReducer);
+  const dateRange = useAppSelector(state => state.dateRangeReducer);
   const priceRange = useAppSelector(state => state.priceRangeReducer);
   const startHoursRanges = useAppSelector(state => state.startHoursRangeReducer);
   const endHoursRanges = useAppSelector(state => state.endHoursRangeReducer);
 
-  // console.log(priceRange);
+  // console.log('dataRanges', extractDeterminedFields(dateRange, timestampToRequestDate));
+
+  const dataRangesWithRequestFormat = extractDeterminedFields(dateRange, timestampToRequestDate);
 
   const getOffset = (): number => {
     return perPage * (page - 1);
   }
 
-  // console.log(departure);
-  // console.log(destination);
-  // console.log(startHoursRanges);
-
   const requestData: GetRoutes = {
+    ...dataRangesWithRequestFormat,
     from_city_id: departure._id,
     to_city_id: destination._id,
     limit: perPage,

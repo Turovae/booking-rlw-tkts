@@ -12,7 +12,7 @@ interface SearchFormProps {
 
 function SearchForm({ onSubmit }: SearchFormProps) {
   const dispatch = useAppDispatch();
-  const { from: dateFrom, to: dateTo } = useAppSelector(state => state.dateRangeReducer);
+  const { date_start: dateFrom, date_end: dateTo } = useAppSelector(state => state.dateRangeReducer);
   const { departure, destination } = useAppSelector(state => state.locationsReducer);
 
   const handleReverseLocations = () => {
@@ -20,11 +20,11 @@ function SearchForm({ onSubmit }: SearchFormProps) {
   }
 
   const handleChangeDateFrom = (timestamp: number) => {
-    dispatch(dateRangeActions.changeFrom(timestamp));
+    dispatch(dateRangeActions.changeStart(timestamp));
   }
 
   const handleChangeDateTo = (timestamp: number) => {
-    dispatch(dateRangeActions.changeTo(timestamp));
+    dispatch(dateRangeActions.changeEnd(timestamp));
   }
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
