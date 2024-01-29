@@ -1,8 +1,5 @@
 import './Settings.scss';
 
-import DatePicker from "../DatePicker/DatePicker";
-import ToggleSwitch from '../UI/ToggleSwitch/ToggleSwitch';
-
 import firstClassIcon from './icons/have_first_class.svg';
 import secondClassIcon from './icons/have_second_class.svg';
 import thirdClassIcon from './icons/have_third_class.svg';
@@ -10,9 +7,15 @@ import fourthClassIcon from './icons/have_fourth_class.svg';
 import wifiIcon from './icons/have_wifi.svg';
 import airConditioningIcon from './icons/have_air_conditioning.svg';
 import expressIcon from './icons/have_express.svg';
+import forwardIcon from './icons/forward-icon.svg';
+import backwardIcon from './icons/backward-icon.svg';
+
+import DatePicker from "../DatePicker/DatePicker";
+import ToggleSwitch from '../UI/ToggleSwitch/ToggleSwitch';
 import RangeSlider, { RangeValues } from '../UI/RangeSlider/RangeSlider';
 import { actions as priceRangeActions } from '../../store/reducers/PriceRangeSlice';
 import { actions as startHoursRangeActions } from '../../store/reducers/StartHoursSlice';
+import { actions as endHoursRangeActions } from '../../store/reducers/EndHoursSlice';
 import { useAppDispatch } from '../../hooks/redux';
 import TimeRange from '../TimeRange/TimeRange';
 
@@ -21,30 +24,48 @@ function Settings() {
   const dispatch = useAppDispatch();
 
   const handleChangePriceRange = ( priceRange: RangeValues ) => {
-    console.log(priceRange);
+    // console.log(priceRange);
 
     dispatch(priceRangeActions.changeAll({
       price_from: priceRange.minValue,
       price_to: priceRange.maxValue,
-    }))
+    }));
   }
 
   const handleChangeStartDepartureHours = (departureHours: RangeValues) => {
-    console.log('departureHours: ', departureHours);
+    // console.log('departureHours: ', departureHours);
 
     dispatch(startHoursRangeActions.changeDepartureHoursRange({
       start_departure_hour_from: departureHours.minValue,
       start_departure_hour_to: departureHours.maxValue,
-    }))
+    }));
   }
 
   const handleChangeStartArrivalHours = (arrivalHours: RangeValues) => {
-    console.log('arrivalHours: ', arrivalHours);
+    // console.log('arrivalHours: ', arrivalHours);
 
     dispatch(startHoursRangeActions.changeArrivalHoursRange({
       start_arrival_hour_from: arrivalHours.minValue,
       start_arrival_hour_to: arrivalHours.maxValue,
-    }))
+    }));
+  }
+
+  const handleChangeEndDepartureHours = (departureHours: RangeValues) => {
+    // console.log('endDepartureHours', departureHours);
+
+    dispatch(endHoursRangeActions.changeDepartureHoursRange({
+      end_departure_hour_from: departureHours.minValue,
+      end_departure_hour_to: departureHours.maxValue,
+    }));
+  }
+
+  const handleChangeEndArrivalHours = (arrivalHours: RangeValues) => {
+    // console.log('endArrivalHours', arrivalHours);
+
+    dispatch(endHoursRangeActions.changeArrivalHoursRange({
+      end_arrival_hour_from: arrivalHours.minValue,
+      end_arrival_hour_to: arrivalHours.maxValue,
+    }));
   }
 
   return (
@@ -129,8 +150,18 @@ function Settings() {
       </div>
       <div className="settings__block">
         <TimeRange
+          icon={forwardIcon}
+          title='Туда'
           onChangeDepartureHours={handleChangeStartDepartureHours}
           onChangeArrivalHours={handleChangeStartArrivalHours}
+        />
+      </div>
+      <div className="settings__block">
+        <TimeRange
+          icon={backwardIcon}
+          title='Обратно'
+          onChangeDepartureHours={handleChangeEndDepartureHours}
+          onChangeArrivalHours={handleChangeEndArrivalHours}
         />
       </div>
     </div>

@@ -4,6 +4,7 @@ import locationsReducer from './reducers/LocationsSlice';
 import comfortReducer from './reducers/ComfortSlice';
 import priceRangeReducer from './reducers/PriceRangeSlice';
 import startHoursRangeReducer from './reducers/StartHoursSlice';
+import endHoursRangeReducer from './reducers/EndHoursSlice';
 import { routesAPI } from "../services/GetRoutesService";
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   comfortReducer,
   priceRangeReducer,
   startHoursRangeReducer,
+  endHoursRangeReducer,
   [routesAPI.reducerPath]: routesAPI.reducer,
 });
 

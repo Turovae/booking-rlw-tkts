@@ -45,7 +45,7 @@
     max-height: 250px;
     margin-top: 22px;
 
-    transition: all .5s linear;
+    transition: all .5s;
     &.closed {
       max-height: 0;
       margin-top: 0;
