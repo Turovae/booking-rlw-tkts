@@ -1,0 +1,71 @@
+
+.train-route {
+  border: 1px solid #c4c4c4;
+  box-shadow: 0 2px 2px rgba($color: #000000, $alpha: .3);
+  display: flex;
+  flex-direction: row;
+
+  &:hover {
+    border: 1px solid #FFA800;
+  }
+
+  &__header {
+    width: 190px;
+    background: #e4e0e9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    text-align: center;
+  }
+
+  &__logo {
+    width: 86px;
+    height: 86px;
+    border: 1px solid #FFF;
+    border-radius: 50%;
+
+    background: url(./image/header-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__title {
+    font-size: 24px;
+    color: #3e3c41;
+    font-weight: 700;
+  }
+
+  &__endpoints {
+    color: #292929;
+    font-size: 16px;
+    font-weight: 400;
+
+    span {
+      display: inline-block;
+      text-transform: capitalize;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__directions {
+    width: 470px;
+    height: 100%;
+    padding: 50px 40px;
+    border-right: 1px solid #e5e5e5;
+  }
+}
+
+.train-direction {
+  display: flex;
+  justify-content: space-between;
+
+  &__city {
+    text-transform: capitalize;
+  }
+}

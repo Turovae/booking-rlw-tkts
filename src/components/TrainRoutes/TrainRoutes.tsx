@@ -8,6 +8,7 @@ import Toggler from '../UI/Toggler/Toggler';
 import PageToggle from '../UI/PageToggle/PageToggle';
 import { timestampToRequestDate } from '../../utils/dateTranslate';
 import { extractDeterminedFields } from '../../utils/extractDetermined';
+import TrainRoute from '../TrainRoute/TrainRoute';
 
 function TrainRoutes() {
   const [ sortBy, setSortBy ] = useState<string>('date');
@@ -24,6 +25,9 @@ function TrainRoutes() {
   // console.log('dataRanges', extractDeterminedFields(dateRange, timestampToRequestDate));
 
   const dataRangesWithRequestFormat = extractDeterminedFields(dateRange, timestampToRequestDate);
+  const truesComfortParams = extractDeterminedFields(comfortParams);
+
+  console.log(truesComfortParams);
 
   const getOffset = (): number => {
     return perPage * (page - 1);
@@ -37,7 +41,8 @@ function TrainRoutes() {
     sort: sortBy,
     offset: getOffset(),
 
-    ...comfortParams,
+    // ...comfortParams,
+    ...truesComfortParams,
     ...priceRange,
     ...startHoursRanges,
     ...endHoursRanges,
@@ -93,7 +98,7 @@ function TrainRoutes() {
       </div>
       <div className="train-routes__main">
         {isLoadingRoutes && <div>Идет загрузка</div>}
-        {routes.map((route) => <div key={route.departure._id}>{route.departure.train.name}</div>)
+        {routes.map((route) => <TrainRoute key={route.departure._id} route={route} />)
         }
       </div>
       <div className="train-routes__footer">

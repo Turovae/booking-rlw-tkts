@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import './PageToggle.scss';
 
 interface PageToggleProps {
@@ -11,7 +12,7 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
     return null;
   }
 
-  const buttons = [];
+  const buttons: ReactElement[] = [];
 
   const getClassName = (index?: number | string): string => {
     const baseClass = 'page-toggle__button';
@@ -38,9 +39,12 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
   }
 
   const createButton = (title: number | string) => {
+    const key = typeof title === 'number'
+      ? title
+      : Math.floor(Math.random() * 1000000);
     buttons.push(
       <button
-        key={buttons.length}
+        key={key}
         className={getClassName(title)}
         onClick={typeof title === 'number' ? () => setPage(title) : () => {}}
       >{title}</button>
@@ -76,12 +80,14 @@ function PageToggle({ count, page, setPage }: PageToggleProps) {
       }
     }
 
-    buttons.push(
-      <button
-        className={getClassName(count)}
-        onClick={() => setPage(count)}
-      >{count}</button>
-    )
+    createButton(count);
+
+    // buttons.push(
+    //   <button
+    //     className={getClassName(count)}
+    //     onClick={() => setPage(count)}
+    //   >{count}</button>
+    // )
   }
 
   return (

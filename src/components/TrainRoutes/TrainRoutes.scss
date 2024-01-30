@@ -39,6 +39,10 @@ $header-color: #928F94;
 
   &__main {
     flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
   }
 
   &__footer {
