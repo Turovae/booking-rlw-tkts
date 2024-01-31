@@ -51,21 +51,25 @@
   &__body {
     display: flex;
     flex-direction: row;
+    flex-grow: 1;
+  }
+
+  &__col {
+    flex-grow: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   &__directions {
-    width: 470px;
+    // width: 470px;
     height: 100%;
     padding: 50px 40px;
     border-right: 1px solid #e5e5e5;
   }
-}
 
-.train-direction {
-  display: flex;
-  justify-content: space-between;
-
-  &__city {
-    text-transform: capitalize;
+  &__prices {
+    flex-grow: 1;
   }
+
 }

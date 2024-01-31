@@ -6,14 +6,13 @@ export function timestampToRequestDate(timestamp: number): string | null {
 }
 
 export function unixTimestampToTime(timestamp: number): string {
-  return moment.unix(timestamp).format('MM.DD HH:mm');
+  return moment.unix(timestamp).format('DD.MM HH:mm');
 }
 
 export function durationToHumanFormat(timestamp: number): string {
   const duration = moment.duration(timestamp, 'seconds');
 
-  // const { days, hours, minutes } = duration;
-  const days = duration.days();
+  const days = Math.floor(duration.asDays());
   let hours: string | number = duration.hours();
   let minutes: string | number = duration.minutes();
 

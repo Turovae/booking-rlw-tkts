@@ -1,5 +1,8 @@
-import { Departure } from "../../models/Departure";
 import { Route } from "../../models/Route";
+import ComfortIcons from "../ComfortIcons/ComfortIcons";
+import PriceInfo from "../PriceInfo/PriceInfo";
+
+import TrainDirection from "../TrainDirection/TrainDirection";
 
 import './TrainRoute.scss';
 
@@ -26,8 +29,12 @@ function TrainRoute({ route }: TrainRouteProps) {
           </div>
         </div>
         <div className="train-route__col">
-          <div className="train-route__prices">prices</div>
-          <div className="train-route__comfort">comfort icons</div>
+          <div className="train-route__prices">
+            <PriceInfo departure={route.departure} />
+          </div>
+          <div className="train-route__comfort">
+            <ComfortIcons departure={route.departure} />
+          </div>
           <button className="train-route__btn">Выбрать места</button>
         </div>
       </div>
@@ -36,44 +43,3 @@ function TrainRoute({ route }: TrainRouteProps) {
 }
 
 export default TrainRoute;
-
-import moment from "moment";
-import { unixTimestampToTime, durationToHumanFormat } from "../../utils/dateTranslate";
-
-interface TrainDirectionProps {
-  departure: Departure;
-}
-
-function TrainDirection({ departure }: TrainDirectionProps) {
-  const { from, to, duration } = departure;
-
-  console.log(to.datetime - from.datetime);
-  console.log(duration);
-  console.log(moment.duration(duration, 'seconds'));
-
-  return (
-    <div className="train-direction">
-      <div className="train-direction__point">
-        <div className="train-direction__time">
-          {unixTimestampToTime(from.datetime)}
-        </div>
-        <div className="train-direction__city">{from.city.name}</div>
-        <div className="train-direction__station">{from.railway_station_name}</div>
-      </div>
-      <div className="train-direction__course">
-        <div className="train-direction__duration">
-          {/* {moment.duration(duration, 'seconds')} */}
-          {durationToHumanFormat(duration)}
-        </div>
-        <div className="train-direction__arrow"></div>
-      </div>
-      <div className="train-direction__point">
-        <div className="train-direction__time">
-          {unixTimestampToTime(to.datetime)}
-        </div>
-        <div className="train-direction__city">{to.city.name}</div>
-        <div className="train-direction__station">{to.railway_station_name}</div>
-      </div>
-    </div>
-  )
-}

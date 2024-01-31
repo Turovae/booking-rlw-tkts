@@ -2,6 +2,7 @@ import { Prices } from "./Prices";
 
 export interface PriceInfo {
   first: Prices;
-  fourth: Prices;
+  second: Prices;
   third: Prices;
+  fourth: Prices;
 }
