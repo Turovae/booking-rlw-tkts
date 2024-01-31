@@ -26,9 +26,10 @@ function PriceInfo({ departure }: PriceInfoProps) {
           && priceInfo
         ) {
           return <PriceInfoItem
+            key={type[0]}
             typePlace={type[1]}
             count={seatsInfo}
-            priceFrom={priceInfo.bottom_price}
+            priceFrom={(priceInfo.bottom_price).toLocaleString()}
           />;
         }
       })}
@@ -41,7 +42,7 @@ export default PriceInfo;
 interface PriceInfoItemProps {
   typePlace: string;
   count: number;
-  priceFrom: number;
+  priceFrom: string;
 }
 
 function PriceInfoItem({ typePlace, count, priceFrom }: PriceInfoItemProps) {
