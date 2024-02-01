@@ -1,8 +1,9 @@
+import { Outlet } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import Settings from "../Settings/Settings";
-import TrainRoutes from "../TrainRoutes/TrainRoutes";
+// import Settings from "../Settings/Settings";
+// import TrainRoutes from "../TrainRoutes/TrainRoutes";
 
 import './HomePage.scss';
 
@@ -15,12 +16,13 @@ function HomePage() {
       </div>
       <div className="container">
         <div className="home__main">
-          <div className="home__sidebar">
+          <Outlet />
+          {/* <div className="home__sidebar">
             <Settings />
           </div>
           <div className="home__content">
             <TrainRoutes />
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />

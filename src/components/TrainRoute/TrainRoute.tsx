@@ -37,7 +37,9 @@ function TrainRoute({ route }: TrainRouteProps) {
             <ComfortIcons departure={route.departure} />
           </div>
           <div className="train-route__control">
-            <SelectSeatsButton />
+            <SelectSeatsButton
+              link={route.departure._id}
+            />
           </div>
         </div>
       </div>

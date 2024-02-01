@@ -1,5 +1,3 @@
-$temp-border: 1px solid blueviolet;
-
 .home {
 
   .header {
@@ -29,21 +27,21 @@ $temp-border: 1px solid blueviolet;
     }
   }
 
+  background: #f7f5f9;
+
   &__main {
     display: flex;
     margin-top: 95px;
     margin-bottom: 190px;
-  }
 
-  &__sidebar {
-    border: $temp-border;
-    flex-basis: 360px;
-  }
+    .sidebar {
+      flex-basis: 360px;
+    }
 
-  &__content {
-    border: $temp-border;
-    flex-basis: auto;
-    flex-grow: 1;
-    margin-left: 80px;
+    .content {
+      flex-basis: auto;
+      flex-grow: 1;
+      margin-left: 80px;
+    }
   }
 }

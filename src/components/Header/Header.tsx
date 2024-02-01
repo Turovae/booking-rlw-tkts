@@ -35,7 +35,7 @@ function Header() {
         </div>
         <div className="header__col">
           <div className="header__form">
-            <SearchForm onSubmit={() => {navigate('/home')}} />
+            <SearchForm onSubmit={() => {navigate('/home/routes')}} />
           </div>
         </div>
       </div>
