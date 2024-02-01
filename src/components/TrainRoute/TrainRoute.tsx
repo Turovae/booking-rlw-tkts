@@ -3,6 +3,7 @@ import ComfortIcons from "../ComfortIcons/ComfortIcons";
 import PriceInfo from "../PriceInfo/PriceInfo";
 
 import TrainDirection from "../TrainDirection/TrainDirection";
+import SelectSeatsButton from "../UI/Buttons/SelectSeatsButton/SelectSeatsButton";
 
 import './TrainRoute.scss';
 
@@ -35,7 +36,9 @@ function TrainRoute({ route }: TrainRouteProps) {
           <div className="train-route__comfort">
             <ComfortIcons departure={route.departure} />
           </div>
-          <button className="train-route__btn">Выбрать места</button>
+          <div className="train-route__control">
+            <SelectSeatsButton />
+          </div>
         </div>
       </div>
     </div>

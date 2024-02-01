@@ -75,5 +75,14 @@
 
   &__comfort {
     padding: 0 25px;
+    margin-bottom: 18px;
+  }
+
+  &__control {
+    padding: 0 25px;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: end;
   }
 }
