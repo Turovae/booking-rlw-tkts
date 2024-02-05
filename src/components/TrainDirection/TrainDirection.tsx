@@ -5,9 +5,10 @@ import './TrainDirection.scss';
 
 interface TrainDirectionProps {
   departure: Departure;
+  showDuration?: boolean;
 }
 
-function TrainDirection({ departure }: TrainDirectionProps) {
+function TrainDirection({ departure, showDuration }: TrainDirectionProps) {
   const { from, to, duration } = departure;
 
   return (
@@ -20,9 +21,12 @@ function TrainDirection({ departure }: TrainDirectionProps) {
         <div className="train-direction__station">{from.railway_station_name}</div>
       </div>
       <div className="train-direction__course">
-        <div className="train-direction__duration">
-          {durationToHumanFormat(duration)}
-        </div>
+        {
+          showDuration &&
+          <div className="train-direction__duration">
+            {durationToHumanFormat(duration)}
+          </div>
+        }
         <div className="train-direction__arrow"></div>
       </div>
       <div className="train-direction__point">

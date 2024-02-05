@@ -1,13 +1,14 @@
+import { Departure } from '../../../../models/Departure';
 import './SelectSeatsButton.scss';
 
 import { Link } from 'react-router-dom';
 
 interface SelectSeatsButtonProps {
-  link: string;
+  data: Departure;
   disabled?: boolean;
 }
 
-function SelectSeatsButton({ link, disabled }: SelectSeatsButtonProps) {
+function SelectSeatsButton({ data, disabled }: SelectSeatsButtonProps) {
   const baseClass = 'select-seats-button';
 
   const className = disabled
@@ -16,7 +17,7 @@ function SelectSeatsButton({ link, disabled }: SelectSeatsButtonProps) {
 
   return (
     <span className={className}>
-      <Link to={link}>Выбрать места</Link>
+      <Link to={data._id} state={data}>Выбрать места</Link>
     </span>
   )
 }

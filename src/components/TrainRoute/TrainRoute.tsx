@@ -3,6 +3,7 @@ import ComfortIcons from "../ComfortIcons/ComfortIcons";
 import PriceInfo from "../PriceInfo/PriceInfo";
 
 import TrainDirection from "../TrainDirection/TrainDirection";
+import TrainHeader from "../TrainHeader/TrainHeader";
 import SelectSeatsButton from "../UI/Buttons/SelectSeatsButton/SelectSeatsButton";
 
 import './TrainRoute.scss';
@@ -14,19 +15,14 @@ interface TrainRouteProps {
 function TrainRoute({ route }: TrainRouteProps) {
   return (
     <div className="train-route">
-      <div className="train-route__header">
-        <div className="train-route__logo" />
-        <div className="train-route__title">
-          {route.departure.train.name}
-        </div>
-        <div className="train-route__endpoints">
-          <span>{route.departure.from.city.name}</span> → <span>{route.departure.to.city.name}</span>
-        </div>
-      </div>
+      <TrainHeader data={route.departure} isColumn={true} />
       <div className="train-route__body">
         <div className="train-route__col">
           <div className="train-route__directions">
-            <TrainDirection departure={route.departure} />
+            <TrainDirection
+              departure={route.departure}
+              showDuration={true}
+            />
           </div>
         </div>
         <div className="train-route__col">
@@ -38,7 +34,8 @@ function TrainRoute({ route }: TrainRouteProps) {
           </div>
           <div className="train-route__control">
             <SelectSeatsButton
-              link={route.departure._id}
+              // link={route.departure._id}
+              data={route.departure}
             />
           </div>
         </div>

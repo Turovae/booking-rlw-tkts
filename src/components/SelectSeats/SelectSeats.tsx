@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import ChangeSelectionButton from '../UI/Buttons/ChangeSelectionButton/ChangeSelectionButton';
 import { GetSeats } from '../../models/GetSeats';
 
@@ -8,11 +8,15 @@ import forwardIcon from './image/forward-icon.svg';
 import { useAppSelector } from '../../hooks/redux';
 import { extractDeterminedFields } from '../../utils/extractDetermined';
 import { routesAPI } from '../../services/GetRoutesService';
+import TrainDirection from '../TrainDirection/TrainDirection';
+import TrainHeader from '../TrainHeader/TrainHeader';
+import TrainDuration from '../TrainDuration/TrainDuration';
 
 function SelectSeats() {
   const { id } = useParams();
   const comfortParams = useAppSelector(state => state.comfortReducer);
   const truesComfortParams = extractDeterminedFields(comfortParams);
+  const { state } = useLocation();
 
   if (!id) {
     return (
@@ -28,6 +32,7 @@ function SelectSeats() {
   }
 
   console.log(requestParams);
+  console.log(state);
 
   const { data, isLoading, error } = routesAPI.useFetchSeatsQuery(requestParams);
 
@@ -46,6 +51,24 @@ function SelectSeats() {
           <ChangeSelectionButton
             title='Выбрать другой поезд'
           />
+        </div>
+        <div className="select-seats__route">
+          {
+            state
+              ?
+              <>
+                <div className="select-seats__train-header">
+                  <TrainHeader data={state} />
+                </div>
+                <div className="select-seats__train-direction">
+                  <TrainDirection departure={state} />
+                </div>
+                <div className='select-seats__train-duration'>
+                  <TrainDuration departure={state} />
+                </div>
+              </>
+              : <>Данные о поезде не загрузились</>
+          }
         </div>
       </div>
     </div>

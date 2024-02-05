@@ -24,9 +24,34 @@
   &__icon {
     width: 50px;
     margin-right: 20px;
-    
+
     img {
       height: 100%;
     }
+  }
+
+  &__route {
+    padding: 20px;
+    background: #f7f6f6;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  &__train-header {
+    border-right: 1px solid #fff;
+    padding-right: 20px;
+  }
+
+  &__train-direction {
+    // flex-grow: 1;
+    padding-left: 20px;
+  }
+
+  &__train-duration {
+    padding-left: 35px;
+    
+    border-left: 1px solid #fff;
   }
 }
