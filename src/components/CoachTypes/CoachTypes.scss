@@ -1,0 +1,20 @@
+.coach-types {
+  display: flex;
+  justify-content: space-around;
+
+  padding: 0 20px 25px;
+}
+
+.coach-type {
+  text-align: center;
+  font-size: 24px;
+  color: #928f94;
+
+  &.selected {
+    color: #ffa800;
+  }
+
+  &__icon {
+    margin-bottom: 18px;
+  }
+}

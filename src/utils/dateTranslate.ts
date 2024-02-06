@@ -38,7 +38,10 @@ interface HumanizeDurationObject {
 type Part = 'd' | 'h' | 'm';
 
 function getHumanizedPart(value: number, part: Part): string {
-  const str = moment.duration(value, part).humanize()
+  const str = moment.duration(value, part).humanize(false, {
+    h: 24,
+    m: 60,
+  });
   
   if (value === 1) {
     return '1 ' + str;

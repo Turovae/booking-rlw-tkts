@@ -6,6 +6,7 @@ export interface GetRoutes {
   date_start_arrival?: string;
   date_end_arrival?: string;
   have_first_class?: boolean;
+  have_second_class?: boolean;
   have_third_class?: boolean;
   have_fourth_class?: boolean;
   have_wifi?: boolean;
