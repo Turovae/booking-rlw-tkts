@@ -24,6 +24,10 @@ function TrainRoute({ route }: TrainRouteProps) {
               showDuration={true}
             />
           </div>
+          {
+            route.arrival &&
+            <div>Есть обратное направление!!!</div>
+          }
         </div>
         <div className="train-route__col">
           <div className="train-route__prices">
@@ -34,7 +38,6 @@ function TrainRoute({ route }: TrainRouteProps) {
           </div>
           <div className="train-route__control">
             <SelectSeatsButton
-              // link={route.departure._id}
               data={route.departure}
             />
           </div>

@@ -1,0 +1,45 @@
+.coaches {
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background: #ffd98f;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 5px;
+    align-items: end;
+  }
+
+  &__text {
+    font-size: 18px;
+  }
+
+  &__select {
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.selected {
+      color: #fff;
+      pointer-events: none;
+    }
+  }
+
+  &__description {
+    font-size: 16px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}

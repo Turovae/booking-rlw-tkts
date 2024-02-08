@@ -12,5 +12,5 @@ export default interface Coach {
   bottom_price: number;
   wifi_price: number;
   linens_price: number;
-  avaliable_seats: number;
+  available_seats: number;
 }
