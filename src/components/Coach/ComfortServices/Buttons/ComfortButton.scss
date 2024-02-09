@@ -1,0 +1,40 @@
+.comfort-btn {
+  font-family: inherit;
+
+  width: 36px;
+  height: 36px;
+
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #fff;
+  border: 1px solid #292929;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: all .3s;
+
+  &.selected {
+    color: #fff;
+    background-color: #ffa800;
+    border-color: #ffa800;
+  }
+
+  &:hover {
+    background-color: #ffa800;
+    border-color: #000;
+    color: #292929;
+  }
+
+  &.disabled {
+    pointer-events: none !important;
+    background: #ffa800 !important;
+    border-color: #ffa800 !important;
+    color: #292929 !important;
+
+    opacity: .4;
+  }
+
+}

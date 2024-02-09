@@ -1,0 +1,18 @@
+@font-face {
+  font-family: ComfortIcons;
+  src: url(./fonts/ComfortIcons.ttf);
+}
+
+.comfort-services {
+  &__header {
+    font-size: 18px;
+    color: #928f94;
+    margin-bottom: 5px;
+  }
+
+  &__body {
+    font-family: ComfortIcons;
+    display: flex;
+    gap: 13px;
+  }
+}

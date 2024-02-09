@@ -1,6 +1,7 @@
 import CoachSummary from '../../models/CoachSummary';
 import { getNumberFromCoachName } from '../../utils/other';
 import './Coach.scss';
+import ComfortServices from './ComfortServices/ComfortServices';
 import { FirstPriceTable, FourthPriceTable, SecondPriceTable, ThirdPriceTable } from './SeatsPriceTables/SeatsPriceTables';
 
 interface CoachProps {
@@ -24,7 +25,11 @@ function Coach({ data, selectedType }: CoachProps) {
           { selectedType === 'second' && <SecondPriceTable data={data} /> }
           { selectedType === 'first' && <FirstPriceTable data={data} /> }
         </div>
+        <div className="coach__comfort">
+          <ComfortServices />
+        </div>
       </div>
+      <div className="coach__map"></div>
     </div>
   )
 }
